@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn how to purchase physical precious metals through FK Physical LLC." />
+  <title>How It Works | FK Physical LLC</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo_Fort_Kobbe_Shield_Transparent.png') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body class="inner-page">
+  {% include '_header.html' %}
+  <main>
+       
+
+    <section class="page-hero page-hero-plain"style="background-image: url('{{ url_for('static', filename='images/h77.jfif') }}');">
+      <div class="container">
+        <span class="eyebrow">HOW IT WORKS</span>
+        <h1>A straightforward<span>acquisition process.</span></h1>
+        <p>From initial enquiry through onboarding, payment and completion, our team guides every stage.</p>
+      </div>
+    </section>
+    <section class="section process-page-section">
+      <div class="container">
+        <div class="process-page-grid">
+          <article><span>01</span><h2>Enquire</h2><p>Tell us what you are looking to purchase and our team will discuss your requirements with you.</p></article>
+          <article><span>02</span><h2>Complete onboarding</h2><p>All clients are required to complete FK Physical's onboarding and compliance process before transacting.</p></article>
+          <article><span>03</span><h2>Confirm your purchase</h2><p>Once approved, we confirm available products, quantities and transaction pricing with you.</p></article>
+          <article><span>04</span><h2>Make payment</h2><p>Transactions are completed through FK Physical LLC's United States operations. Clients must be willing and able to remit payment in accordance with our US payment instructions.</p></article>
+          <article><span>05</span><h2>Complete your transaction</h2><p>Once payment and transaction requirements are satisfied, your purchase is completed and the next steps for delivery or transfer can be arranged.</p></article>
+        </div>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary">Start an enquiry <span>↗</span></a>
+      </div>
+    </section>
+  </main>
+  {% include '_footer.html' %}
+</body>
+</html>

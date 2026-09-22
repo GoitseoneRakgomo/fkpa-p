@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Enquire about purchasing physical gold and silver through FK Physical LLC." />
+  <title>Contact | FK Physical LLC</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo_Fort_Kobbe_Shield_Transparent.png') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body class="inner-page">
+  {% include '_header.html' %}
+  <main>
+    <section class="page-hero page-hero-contact">
+      <div class="container page-hero-grid">
+        <div>
+          <span class="eyebrow">START AN ENQUIRY</span>
+          <h1>Interested in purchasing<br><span>physical gold or silver?</span></h1>
+          <p>Speak directly with our team about your requirements. Tell us what you are looking to purchase and we will discuss the next steps with you.</p>
+        </div>
+      </div>
+    </section>
+    <section class="section contact-section">
+      <div class="container contact-grid">
+        <div>
+          <span class="eyebrow">CONTACT FK PHYSICAL LLC</span>
+          <h2>Let's discuss<br><span>your requirements.</span></h2>
+          <p>Our team can assist with current product availability, quantities, transaction pricing and the acquisition process.</p>
+        </div>
+        <div class="contact-card">
+          <span class="eyebrow">DIRECT CONTACT</span>
+          <a href="mailto:info@fkphysical.com" class="contact-email">info@fkphysical.com</a>
+          <a href="tel:+18222585878" class="contact-phone">+1 (822) 258-5787</a>
+          <a href="mailto:info@fkphysical.com" class="btn btn-primary">Enquire about precious metals <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+    <section class="section disclosure-section" id="storage">
+      <div class="container disclosure-grid">
+        <h2>Storage is arranged<br><span>separately.</span></h2>
+        <p>FK Physical LLC does not operate a storage facility. If you require professional storage following your purchase, our team can discuss an introduction to an appropriate separate provider.</p>
+      </div>
+    </section>
+    <section class="legal-section" id="privacy">
+      <div class="container legal-grid">
+        <div><h2>Privacy Policy</h2><p>Enquiries are handled for the purpose of responding to your request and supporting the acquisition process. We do not use enquiry details for unrelated services.</p></div>
+        <div id="terms"><h2>Terms of Use</h2><p>Information on this website is provided for general information about FK Physical LLC's physical precious metals sales process. It is not investment advice or an offer of securities.</p></div>
+      </div>
+    </section>
+  </main>
+  {% include '_footer.html' %}
+</body>
+</html>

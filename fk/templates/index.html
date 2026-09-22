@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FK Physical LLC provides qualifying clients with access to physical gold and silver through its United States operations." />
+  <title>FK Physical LLC | Physical Gold & Silver</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo_Fort_Kobbe_Shield_Transparent.png') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+<header class="site-header" id="site-header">
+  <nav class="navbar container" aria-label="Main Navigation">
+    <a href="{{ url_for('home') }}" class="brand">
+      <div class="brand-mark">
+        <img src="{{ url_for('static', filename='images/Logo_Fort_Kobbe_Shield_Transparent.png') }}" alt="Fort Kobbe shield logo" />
+      </div>
+      <span>FK PHYSICAL LLC</span>
+    </a>
+
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-links">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('metals') }}">Gold &amp; Silver</a>
+      <a href="{{ url_for('how_it_works') }}">How It Works</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <a href="{{ url_for('faqs') }}">FAQs</a>
+      <a href="{{ url_for('contact') }}">Contact</a>
+    </div>
+  </nav>
+
+  <style>
+    .site-header {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      z-index: 1000 !important;
+      background: rgba(24, 23, 19, 0.65) !important;
+      backdrop-filter: blur(8px) !important;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .site-header .brand,
+    .site-header .nav-links a {
+      color: #ffffff !important;
+    }
+
+    .site-header .nav-links a:hover {
+      color: #c8ad70 !important;
+    }
+  </style>
+</header>
+  <main>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="hero-content container">
+        <div class="hero-copy">
+          <span class="eyebrow">FK PHYSICAL LLC</span>
+          <h1>Physical precious metals.<span>Direct ownership.</span></h1>
+          <p>
+            A straightforward way to purchase physical gold and silver through
+            a United States company.
+          </p>
+          <a href="{{ url_for('contact') }}" class="btn btn-primary">Enquire about precious metals <span>↗</span></a>
+        </div>
+
+
+       
+        </div>
+      </div>
+    </section>
+
+<!-- Services / Physical Precious Metals -->
+<section class="services section" id="metals">
+  <div class="container services-split-layout">
+    
+    <!-- Left Column: Header Content + Hero Image -->
+    <div class="services-left-col">
+      <span class="eyebrow">PHYSICAL PRECIOUS METALS</span>
+      <h2>Own something<br><span>real.</span></h2>
+      <p class="services-intro">
+        Gold and silver have been held as physical stores of value for generations. FK Physical focuses on the physical asset itself.
+      </p>
+
+      <div class="services-image">
+        <img src="{{ url_for('static', filename='images/WhatsApp Image 2026-06-25 at 5.09.11 PM.jpg') }}" alt="Close view of refined gold bars" />
+        <span>PHYSICAL GOLD · PHYSICAL SILVER</span>
+      </div>
+    </div>
+
+    <!-- Right Column: 2-Column Grid of Service Cards -->
+    <div class="services-right-col">
+      <div class="service-grid">
+        <article class="service-card">
+          <div class="service-icon">Au</div>
+          <h3>Physical Gold</h3>
+          <p>Purchase physical gold through FK Physical's United States operations. Our team provides personal assistance throughout the acquisition process.</p>
+          <a href="{{ url_for('contact') }}?topic=gold" class="card-link">Enquire about gold <span>↗</span></a>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">Ag</div>
+          <h3>Physical Silver</h3>
+          <p>Purchase physical silver through a straightforward, professionally supported transaction process.</p>
+          <a href="{{ url_for('contact') }}?topic=silver" class="card-link">Enquire about silver <span>↗</span></a>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">01</div>
+          <h3>Personal transaction support</h3>
+          <p>Work directly with our team from initial enquiry through onboarding, payment and completion.</p>
+          <a href="{{ url_for('contact') }}" class="card-link">Start an enquiry <span>↗</span></a>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">US</div>
+          <h3>US-based transactions</h3>
+          <p>Purchases are transacted through FK Physical LLC's United States operations.</p>
+          <a href="{{ url_for('contact') }}" class="card-link">Learn more <span>↗</span></a>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">02</div>
+          <h3>Clear process</h3>
+          <p>Straightforward onboarding, transaction and payment procedures for qualifying clients.</p>
+          <a href="{{ url_for('how_it_works') }}" class="card-link">See how it works <span>↗</span></a>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">03</div>
+          <h3>Focused expertise</h3>
+          <p>We specialise in physical gold and silver rather than unrelated investment products.</p>
+          <a href="{{ url_for('about') }}" class="card-link">About FK Physical <span>↗</span></a>
+        </article>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    <!-- About / Value -->
+    <section class="value-section section" id="about">
+      <div class="container value-grid">
+        <div class="value-copy">
+          <span class="eyebrow">WHY FK PHYSICAL?</span>
+          <h2>Focused on<br><span>physical ownership.</span></h2>
+          <p class="value-intro">
+            We believe clients purchasing physical precious metals should understand what they are buying, who they are buying it from and how their transaction works.
+          </p>
+
+          <div class="value-points">
+            <div class="value-point">
+              <span class="point-number">01</span>
+              <div>
+                <h4>Physical ownership</h4>
+                <p>Our focus is physical precious metals rather than paper or synthetic exposure.</p>
+              </div>
+            </div>
+
+            <div class="value-point">
+              <span class="point-number">02</span>
+              <div>
+                <h4>Personal service</h4>
+                <p>Work directly with our team throughout your acquisition.</p>
+              </div>
+            </div>
+
+            <div class="value-point">
+              <span class="point-number">03</span>
+              <div>
+                <h4>Clear process</h4>
+                <p>Straightforward onboarding, transaction and payment procedures.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="value-visual">
+          <img class="value-image" src="{{ url_for('static', filename='images/Create_a_refined_editorial-style_vault_background_.png') }}" alt="Secure storage vault with gold bars and coins" />
+          <div class="visual-top">
+            <span class="eyebrow">THE PHYSICAL ASSET</span>
+            <span class="visual-year">US OPERATIONS</span>
+          </div>
+
+          <div class="visual-quote">
+            <span class="quote-mark">“</span>
+            <p>Clear ownership begins<br>with a clear process.</p>
+          </div>
+
+          <div class="visual-lines">
+            <div class="line line-one"></div>
+            <div class="line line-two"></div>
+            <div class="line line-three"></div>
+            <div class="line line-four"></div>
+          </div>
+
+          <div class="visual-bottom">
+            <span>GOLD · SILVER</span>
+            <span>DIRECT OWNERSHIP</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+<section class="process-section section" id="how-it-works">
+  <div class="container">
+    <div class="section-heading centered">
+  <span class="eyebrow">HOW IT WORKS</span>
+  <h2>A straightforward <span>acquisition process.</span></h2>
+  <p>From initial enquiry through onboarding, payment and completion, our team guides every stage.</p>
+</div>
+
+    <div class="process-grid-container">
+      <!-- Top Row: 3 Columns -->
+      <div class="process-row process-row-top">
+        <article class="process-card">
+          <div class="process-card-header">
+            <span class="process-number">01</span>
+            <div class="process-icon">
+              <!-- Enquiry / Message Icon -->
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+          </div>
+          <h3>Enquire</h3>
+          <p>Tell us what you are looking to purchase and our team will discuss your requirements with you.</p>
+        </article>
+
+        <article class="process-card">
+          <div class="process-card-header">
+            <span class="process-number">02</span>
+            <div class="process-icon">
+              <!-- Verification / Shield Check Icon -->
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 11 12 14 22 4"/></svg>
+            </div>
+          </div>
+          <h3>Complete onboarding</h3>
+          <p>All clients complete FK Physical's onboarding and compliance process before transacting.</p>
+        </article>
+
+        <article class="process-card">
+          <div class="process-card-header">
+            <span class="process-number">03</span>
+            <div class="process-icon">
+              <!-- Pricing / Tag Icon -->
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+            </div>
+          </div>
+          <h3>Confirm your purchase</h3>
+          <p>Once approved, we confirm available products, quantities and transaction pricing with you.</p>
+        </article>
+      </div>
+
+      <!-- Bottom Row: 2 Columns (Centered) -->
+      <div class="process-row process-row-bottom">
+        <article class="process-card">
+          <div class="process-card-header">
+            <span class="process-number">04</span>
+            <div class="process-icon">
+              <!-- Payment / Credit Card Icon -->
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            </div>
+          </div>
+          <h3>Make payment</h3>
+          <p>Transactions are completed through FK Physical LLC's United States operations.</p>
+        </article>
+
+        <article class="process-card">
+          <div class="process-card-header">
+            <span class="process-number">05</span>
+            <div class="process-icon">
+              <!-- Completion / Check Circle Icon -->
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+          </div>
+          <h3>Complete your transaction</h3>
+          <p>Once payment and transaction requirements are satisfied, your purchase is completed.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+    <!-- 5. Glass CTA Banner -->
+<section class="banner-base banner-glass-cta">
+  <div class="container">
+    <div class="glass-panel">
+      <div class="glass-panel-text">
+        <span class="eyebrow">PRIVATE ACQUISITION</span>
+        <h2>Ready to proceed with <span>physical bullion?</span></h2>
+        <p>Contact our US-based acquisition specialists for product availability, live quotes, and onboarding assistance.</p>
+      </div>
+      <a href="{{ url_for('contact') }}" class="btn btn-light">Start Enquiry <span>↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- Storage -->
+<section class="storage-section section" id="storage">
+  <div class="container storage-grid">
+    <!-- Left Side: Vault Image -->
+    <div class="storage-image-wrap">
+      <img src="{{ url_for('static', filename='images/Create_a_dramatic_secure_bullion_vault_showing_row.png') }}" alt="Secure precious metals vault" />
+    </div>
+
+    <!-- Right Side: Heading Stacked Above Copy Text -->
+    <div class="storage-content">
+      <div class="storage-heading">
+        <span class="eyebrow">STORAGE</span>
+        <h2>Need somewhere to<br><span>store your metals?</span></h2>
+      </div>
+      <div class="storage-copy">
+        <p>Your purchase and your storage do not have to be provided by the same company.</p>
+        <p>FK Physical LLC sells physical precious metals. We do not operate a storage facility. If you require professional storage following your purchase, our team can introduce you to a separate storage provider.</p>
+        <p>For clients interested in secure storage in Panama, this may include an introduction to Fort Kobbe Management Corp., a separate Panama-based company providing private precious metals storage.</p>
+        <a href="#contact" class="btn btn-primary">Ask about storage options <span>↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Timeline Process Banner -->
+<section class="banner-base banner-timeline">
+  <div class="container">
+    <div class="section-heading centered">
+      <span class="eyebrow">STRUCTURED EXECUTION</span>
+      <h2>Your path to <span>physical ownership.</span></h2>
+    </div>
+    <div class="timeline-grid-four">
+      <div class="timeline-step-card">
+        <span class="step-num">01.</span>
+        <h4>Initial Consultation</h4>
+        <p>Define your volume and product specifications with our team.</p>
+      </div>
+      <div class="timeline-step-card">
+        <span class="step-num">02.</span>
+        <h4>Client Verification</h4>
+        <p>Complete regulatory compliance and onboarding requirements.</p>
+      </div>
+      <div class="timeline-step-card">
+        <span class="step-num">03.</span>
+        <h4>Pricing Confirmation</h4>
+        <p>Lock in live market quotes and available product allocations.</p>
+      </div>
+      <div class="timeline-step-card">
+        <span class="step-num">04.</span>
+        <h4>Settlement</h4>
+        <p>Complete transactions securely via US operational frameworks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+   <!-- CTA -->
+<section class="cta-section" id="contact">
+  <img class="cta-image" src="{{ url_for('static', filename='images/WhatsApp Image 2026-06-25 at 5.09.09 PM.jpg') }}" alt="Gold bars arranged for secure storage" />
+  <div class="container cta-inner">
+    <div class="cta-content">
+      <span class="eyebrow">START AN ENQUIRY</span>
+      <h2>Interested in purchasing<br><span>physical gold or silver?</span></h2>
+      <a href="mailto:info@fkphysical.com" class="btn btn-light">Start an enquiry <span>↗</span></a>
+    </div>
+  </div>
+</section>
+
+    <!-- FAQs -->
+<section class="faq-section section" id="faqs">
+  <div class="container">
+  <div class="section-heading centered">
+  <span class="eyebrow">FAQS</span>
+  <h2>Clear answers before <span>you enquire.</span></h2>
+</div>
+
+    <div class="faq-accordion-container">
+      <details class="faq-item">
+        <summary class="faq-question">
+          <h3>What does FK Physical sell?</h3>
+          <span class="faq-icon">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>We sell physical gold and silver to qualifying clients through our United States operations.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <h3>Do you provide storage?</h3>
+          <span class="faq-icon">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>No. We do not operate a storage facility. We can discuss an introduction to a separate storage provider.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <h3>Do you sell investment products?</h3>
+          <span class="faq-icon">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>No. We do not provide investment management services or sell securities or paper precious metals products.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <h3>Who can purchase?</h3>
+          <span class="faq-icon">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>All clients are required to complete our onboarding and compliance process before transacting.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+ 
+
+    <!-- 1. Stat Grid Banner -->
+<section class="banner-base banner-stats">
+  <div class="container banner-stats-content">
+    <div>
+      <span class="eyebrow">INSTITUTIONAL ASSURANCE</span>
+      <h2>Built on physical security <br><span>and compliance.</span></h2>
+      <p>Every transaction is underpinned by rigorous identity verification and streamlined onboarding procedures operating through established United States entities.</p>
+    </div>
+    <div class="stat-grid-wrapper">
+      <div class="stat-card-item">
+        <strong>100%</strong>
+        <span>Physical Asset Allocation</span>
+      </div>
+      <div class="stat-card-item">
+        <strong>US</strong>
+        <span>Based Operations</span>
+      </div>
+      <div class="stat-card-item">
+        <strong>Au/Ag</strong>
+        <span>Focused Specialization</span>
+      </div>
+      <div class="stat-card-item">
+        <strong>1-on-1</strong>
+        <span>Direct Account Support</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <div class="footer-brand">
+        <a href="#" class="brand">
+          <div class="brand-mark">
+            <img src="{{ url_for('static', filename='images/Logo_Fort_Kobbe_Shield_Transparent.png') }}" alt="Fort Kobbe shield logo" />
+          </div>
+          <span>FK PHYSICAL LLC</span>
+        </a>
+        <p>
+          US-based physical precious metals sales for qualifying clients.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Company</h4>
+        <a href="#about">About</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#faqs">FAQs</a>
+      </div>
+
+      <div class="footer-column">
+        <h4>Physical metals</h4>
+        <a href="#metals">Physical Gold</a>
+        <a href="#metals">Physical Silver</a>
+        <a href="#storage">Storage options</a>
+      </div>
+
+      <div class="footer-column">
+        <h4>Contact</h4>
+        <a href="mailto:info@fkphysical.com">info@fkphysical.com</a>
+        <a href="tel:+18222585878">+1 (822) 258-5787</a>
+        <span>Fort Kobbe, Panama</span>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© 2026 FK Physical LLC. All rights reserved.</span>
+      <div>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuToggle && navLinks) {
+      // Toggle menu visibility
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navLinks.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+        
+        const isExpanded = navLinks.classList.contains('active');
+        menuToggle.setAttribute('aria-expanded', isExpanded);
+      });
+
+      // Close menu when clicking any nav link
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('active');
+          menuToggle.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

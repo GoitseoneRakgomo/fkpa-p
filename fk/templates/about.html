@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn about FK Physical LLC and its focused physical precious metals business." />
+  <title>About | FK Physical LLC</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo_Fort_Kobbe_Shield_Transparent.png') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body class="inner-page">
+  {% include '_header.html' %}
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero page-hero-plain">
+      <div class="container">
+        <span class="eyebrow">ABOUT FK PHYSICAL LLC</span>
+        <h1>Focused on<br><span>physical precious metals.</span></h1>
+        <p>FK Physical LLC is a United States company specialising in the sale of physical gold and silver to qualifying clients.</p>
+      </div>
+    </section>
+
+    <!-- Core Approach Section -->
+    <section class="section about-section">
+      <div class="container about-grid">
+        <div>
+          <span class="eyebrow">OUR APPROACH</span>
+          <h2>Simple, clear,<br><span>personal.</span></h2>
+        </div>
+        <div class="about-copy">
+          <p>Our approach is intentionally straightforward. We believe clients purchasing physical precious metals should understand what they are buying, who they are buying it from and how their transaction works.</p>
+          <p>Our team provides personal support throughout the acquisition process, from the initial conversation through completion.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote Hero Banner -->
+    <section class="banner-base banner-quote-hero">
+      <div class="container quote-hero-inner">
+        <span class="eyebrow">OUR CORE PRINCIPLE</span>
+        <blockquote>
+          “Precious metal ownership should be simple, transparent, and grounded entirely in physical assets.”
+        </blockquote>
+        <cite>— FK Physical LLC Guidelines</cite>
+      </div>
+    </section>
+
+    <!-- Mission & Pillars Grid Section -->
+    <section class="section about-pillars-section">
+      <div class="container">
+        <div class="section-heading centered">
+          <span class="eyebrow">OUR FOUNDATION</span>
+          <h2>Built on integrity,<br><span>clarity, and security.</span></h2>
+          <p>We structure every client relationship around core institutional standards to ensure a seamless acquisition process.</p>
+        </div>
+        <div class="process-page-grid">
+          <article>
+            <span>01</span>
+            <h2>Direct Physical Delivery</h2>
+            <p>Every ounce transacted represents actual physical metals, removing pooled risks or unallocated claims.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h2>US Compliance Standard</h2>
+            <p>Operations adhere to established United States regulatory onboarding and transaction procedures.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h2>Dedicated Support</h2>
+            <p>Clients work directly with experienced personnel throughout onboarding, pricing, and settlement.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Institutional Assurance Stat Grid Banner -->
+    <section class="banner-base banner-stats">
+      <div class="container banner-stats-content">
+        <div>
+          <span class="eyebrow">INSTITUTIONAL ASSURANCE</span>
+          <h2>Built on physical security <br><span>and compliance.</span></h2>
+          <p>Every transaction is underpinned by rigorous identity verification and streamlined onboarding procedures operating through established United States entities.</p>
+        </div>
+        <div class="stat-grid-wrapper">
+          <div class="stat-card-item">
+            <strong>100%</strong>
+            <span>Physical Asset Allocation</span>
+          </div>
+          <div class="stat-card-item">
+            <strong>US</strong>
+            <span>Based Operations</span>
+          </div>
+          <div class="stat-card-item">
+            <strong>Au/Ag</strong>
+            <span>Focused Specialization</span>
+          </div>
+          <div class="stat-card-item">
+            <strong>1-on-1</strong>
+            <span>Direct Account Support</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What We Do / Don't Do Section -->
+    <section class="section about-list-section">
+      <div class="container about-list-grid">
+        <div>
+          <span class="eyebrow">WHAT WE DO</span>
+          <ul>
+            <li>Physical gold sales</li>
+            <li>Physical silver sales</li>
+            <li>Personal transaction support</li>
+            <li>Precious metals acquisition through our US operations</li>
+          </ul>
+        </div>
+        <div>
+          <span class="eyebrow">WHAT WE DON'T DO</span>
+          <ul>
+            <li>We do not provide investment management services.</li>
+            <li>We do not sell securities or paper precious metals products.</li>
+            <li>We do not operate storage facilities.</li>
+            <li>We focus on physical gold and silver.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Split Media Banner -->
+    <section class="banner-base banner-media-split">
+      <div class="media-split-grid">
+        <div class="media-split-image-wrap">
+          <img src="{{ url_for('static', filename='images/WhatsApp Image 2026-06-25 at 5.09.11 PM.jpg') }}" alt="Refined physical gold bars" />
+        </div>
+        <div class="media-split-text">
+          <span class="eyebrow">TANGIBLE WEALTH</span>
+          <h2>Uncompromising focus on <span>physical asset delivery.</span></h2>
+          <p>We eliminate derivative complications, synthetic paper contracts, and pooled claims. You receive direct access to physical gold and silver, purchased cleanly through clear US administrative processes.</p>
+          <div class="banner-media-action">
+            <a href="{{ url_for('contact') }}" class="btn btn-primary">Enquire for Details <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+  {% include '_footer.html' %}
+</body>
+</html>

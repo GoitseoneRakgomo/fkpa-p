@@ -1,0 +1,48 @@
+<header class="site-header" id="site-header">
+  <nav class="navbar container" aria-label="Main Navigation">
+    <a href="{{ url_for('home') }}" class="brand">
+      <div class="brand-mark">
+        <img src="{{ url_for('static', filename='images/Logo_Fort_Kobbe_Shield_Transparent.png') }}" alt="Fort Kobbe shield logo" />
+      </div>
+      <span>FK PHYSICAL LLC</span>
+    </a>
+
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-links">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <a href="{{ url_for('metals') }}">Gold &amp; Silver</a>
+      <a href="{{ url_for('how_it_works') }}">How It Works</a>
+      
+      <a href="{{ url_for('faqs') }}">FAQs</a>
+      <a href="{{ url_for('contact') }}">Contact</a>
+    </div>
+  </nav>
+
+  <style>
+    .site-header {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      z-index: 1000 !important;
+      background: rgba(24, 23, 19, 0.65) !important;
+      backdrop-filter: blur(8px) !important;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .site-header .brand,
+    .site-header .nav-links a {
+      color: #ffffff !important;
+    }
+
+    .site-header .nav-links a:hover {
+      color: #c8ad70 !important;
+    }
+  </style>
+</header>

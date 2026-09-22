@@ -1,0 +1,59 @@
+<footer class="site-footer">
+  <div class="container footer-top">
+    <div class="footer-brand">
+      <a href="{{ url_for('home') }}" class="brand">
+        <div class="brand-mark">
+          <img src="{{ url_for('static', filename='images/Logo_Fort_Kobbe_Shield_Transparent.png') }}" alt="Fort Kobbe shield logo" />
+        </div>
+        <span>FK PHYSICAL LLC</span>
+      </a>
+      <p>US-based physical precious metals sales for qualifying clients.</p>
+    </div>
+
+    <div class="footer-column">
+      <h4>Company</h4>
+      <a href="{{ url_for('about') }}">About</a>
+      <a href="{{ url_for('how_it_works') }}">How It Works</a>
+      <a href="{{ url_for('faqs') }}">FAQs</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>Physical metals</h4>
+      <a href="{{ url_for('metals') }}#gold">Physical Gold</a>
+      <a href="{{ url_for('metals') }}#silver">Physical Silver</a>
+      <a href="{{ url_for('contact') }}?topic=storage">Storage options</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>Contact</h4>
+      <a href="mailto:info@fkphysical.com">info@fkphysical.com</a>
+      <a href="{{ url_for('contact') }}">Start an enquiry</a>
+      <span>United States operations</span>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <span>&copy; 2026 FK Physical LLC. All rights reserved.</span>
+    <div>
+      <a href="{{ url_for('contact') }}#privacy">Privacy Policy</a>
+      <a href="{{ url_for('contact') }}#terms">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      menuToggle.classList.remove('active');
+    });
+  });
+</script>
