@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Compare physical gold and silver, review historical market performance, and enquire about a purchase with FK Physical LLC." />
+  <title>Gold &amp; Silver | FK Physical LLC</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo_Fort_Kobbe_Shield_Transparent.png') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <script src="{{ url_for('static', filename='metals.js') }}" defer></script>
+</head>
+<body class="inner-page metals-page">
+  {% include '_header.html' %}
+  <main>
+    <section class="page-hero metals-hero" style="background-image: url('{{ url_for('static', filename='images/h33.jfif') }}');">
+      <div class="container page-hero-grid">
+        <div>
+          <h1>Gold and silver.<br>Physical ownership.</h1>
+          <p>Compare the two metals, explore historical market movement and learn how to enquire about a physical purchase through our United States operations.</p>
+          <a href="#performance" class="btn btn-primary">Compare performance <span>↓</span></a>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <section class="metal-feature-section" id="gold" aria-labelledby="gold-heading">
+      <div class="container metal-feature-grid">
+        <div class="metal-copy">
+          <span class="metal-symbol" aria-hidden="true">Au</span>
+          <h2 id="gold-heading">Physical gold.<br>Considered value.</h2>
+          <p>Gold is often selected by clients seeking a compact physical asset with an established role in wealth preservation. We help qualifying clients review available bars or coins, product details, quantities and transaction pricing before they decide to proceed.</p>
+          <dl class="metal-facts">
+            <div><dt>Physical forms</dt><dd>Bars and bullion coins, subject to availability.</dd></div>
+            <div><dt>Practical consideration</dt><dd>Gold carries relatively high value per unit of weight, which can make a purchase more compact than a comparable-value silver purchase.</dd></div>
+            <div><dt>What to confirm</dt><dd>Product, weight, purity, premium and total transaction price.</dd></div>
+          </dl>
+          <a href="{{ url_for('contact') }}?topic=gold" class="btn btn-primary">Enquire about gold <span>↗</span></a>
+        </div>
+        <figure class="metal-image-frame">
+          <img src="{{ url_for('static', filename='images/WhatsApp Image 2026-06-25 at 5.09.12 PM (1).jpg') }}" alt="Physical gold bullion bars" loading="lazy" />
+          <figcaption>Physical gold bullion</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="banner-base banner-quote-hero section-image metals-editorial-banner" style="--section-image: url('{{ url_for('static', filename='images/Create_a_dramatic_secure_bullion_vault_showing_row.png') }}');">
+      <div class="container quote-hero-inner">
+        <blockquote>“A clear decision starts with understanding the product, the price and the process.”</blockquote>
+        <cite>Physical gold &amp; silver, with personal guidance</cite>
+      </div>
+    </section>
+
+    <section class="metal-feature-section metal-feature-silver" id="silver" aria-labelledby="silver-heading">
+      <div class="container metal-feature-grid">
+        <figure class="metal-image-frame">
+          <img src="{{ url_for('static', filename='images/WhatsApp Image 2026-06-25 at 5.09.09 PM (2).jpg') }}" alt="Physical silver bullion bars" loading="lazy" />
+          <figcaption>Physical silver bullion</figcaption>
+        </figure>
+        <div class="metal-copy">
+          <span class="metal-symbol metal-symbol-silver" aria-hidden="true">Ag</span>
+          <h2 id="silver-heading">Physical silver.<br>A different balance.</h2>
+          <p>Silver combines precious-metal ownership with broad industrial use. Its market price can be more sensitive to industrial demand and has historically been more volatile than gold. Our team can explain available bars or coins and the transaction terms for your enquiry.</p>
+          <dl class="metal-facts">
+            <div><dt>Physical forms</dt><dd>Bars and bullion coins, subject to availability.</dd></div>
+            <div><dt>Practical consideration</dt><dd>Silver typically has a lower price per ounce than gold, but a similar-value purchase can mean more weight and storage volume.</dd></div>
+            <div><dt>What to confirm</dt><dd>Product, weight, purity, premium and total transaction price.</dd></div>
+          </dl>
+          <a href="{{ url_for('contact') }}?topic=silver" class="btn btn-primary">Enquire about silver <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+
+
+    
+<!-- SECTION 2: Why Invest Feature Banner (Mountain Landscape) -->
+<section class="banner-base why-invest-banner" id="why-invest">
+  <div class="container why-invest-grid">
+    
+    <!-- Left Column: Heading & Description -->
+    <div class="why-invest-left">
+      <h2>A Timeless Asset in a Changing World</h2>
+      <p>Gold and silver have stood the test of time. They offer protection against inflation, economic uncertainty and currency fluctuations.</p>
+    
+    </div>
+
+    <!-- Right Column: 3 Feature Items -->
+    <div class="why-invest-right">
+      
+      <div class="invest-feature-item">
+        <div class="invest-icon">
+          <span class="asset-icon" style="--icon-image: url('{{ url_for('static', filename='icons/E122B69F-3B9F-4F2A-978F-03577985E94A.png') }}')" aria-hidden="true"></span>
+        </div>
+        <div class="invest-feature-text">
+          <h4>Wealth Preservation</h4>
+          <p>Maintain your purchasing power across generations.</p>
+        </div>
+      </div>
+
+      <div class="invest-feature-item">
+        <div class="invest-icon">
+          <span class="asset-icon" style="--icon-image: url('{{ url_for('static', filename='icons/54FDEB07-4295-479D-A096-FF3B537644A0.png') }}')" aria-hidden="true"></span>
+        </div>
+        <div class="invest-feature-text">
+          <h4>Hedge Against Inflation</h4>
+          <p>A reliable store of value in uncertain times.</p>
+        </div>
+      </div>
+
+      <div class="invest-feature-item">
+        <div class="invest-icon">
+          <span class="asset-icon" style="--icon-image: url('{{ url_for('static', filename='icons/967FE979-99CC-403D-B0CB-A20D927D45D8.png') }}')" aria-hidden="true"></span>
+        </div>
+        <div class="invest-feature-text">
+          <h4>Global Demand</h4>
+          <p>Consistent value, worldwide recognition.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+  </main>
+  {% include '_footer.html' %}
+</body>
+</html>

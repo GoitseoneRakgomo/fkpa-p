@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Enquire about purchasing physical gold and silver through FK Physical LLC." />
+  <title>Contact | FK Physical LLC</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo_Fort_Kobbe_Shield_Transparent.png') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body class="inner-page">
+  {% include '_header.html' %}
+
+  <main>
+    <!-- Hero Section -->
+    <section class="page-hero page-hero-contact"
+  style="background-image: url('{{ url_for('static', filename='images/h1.jfif') }}');
+    background-size: cover; background-position: center;">
+  <div class="container page-hero-grid">
+    <div>
+      <h1>Interested in purchasing<br>physical gold or silver?</h1>
+      <p>Speak directly with our team about your requirements. Tell us what you are looking to purchase and we will discuss the next steps with you.</p>
+    </div>
+  </div>
+</section>
+
+    <!-- Main Contact & Form Section -->
+    <section class="section contact-section section-image" >
+      <div class="container contact-grid-wrapper">
+        
+        <!-- Left Side: Information & Direct Contact Card -->
+        <div class="contact-info-col">
+          <h2>Let's discuss<br>your requirements.</h2>
+          <p>Our team can assist with current product availability, quantities, transaction pricing, and the onboarding acquisition process.</p>
+          
+          <div class="contact-details-card">
+            <div class="contact-detail-item">
+              <span class="detail-label">EMAIL ENQUIRIES</span>
+              <a href="mailto:info@fkphysical.com" class="contact-email">info@fkphysical.com</a>
+            </div>
+            <div class="contact-detail-item">
+              <span class="detail-label">TELEPHONE</span>
+              <a href="tel:+18222585878" class="contact-phone">+1 (822) 258-5787</a>
+            </div>
+            <div class="contact-detail-item">
+              <span class="detail-label">OPERATIONS</span>
+              <span class="detail-text">United States Operations</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Contact Form -->
+        <div class="contact-form-container">
+          {% if submission_email %}
+            <div class="contact-form-status" role="status">
+              <h2>Your enquiry is ready</h2>
+              <p>Open your email app to review and send your enquiry to our team. This site does not send email automatically.</p>
+              <a href="{{ submission_email }}" class="btn btn-primary submit-btn">Open email to send enquiry <span>↗</span></a>
+            </div>
+          {% else %}
+          {% if form_error %}
+            <p class="contact-form-error" role="alert">{{ form_error }}</p>
+          {% endif %}
+          <form class="contact-form" action="{{ url_for('contact') }}" method="POST">
+            <div class="form-group-row">
+              <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first_name" placeholder="John" value="{{ form_values.get('first_name', '') }}" required />
+              </div>
+              <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last_name" placeholder="Doe" value="{{ form_values.get('last_name', '') }}" required />
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="john@example.com" value="{{ form_values.get('email', '') }}" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" value="{{ form_values.get('phone', '') }}" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="interest">Area of Interest</label>
+              <select id="interest" name="interest" required>
+                <option value="" disabled {% if not selected_topic %}selected{% endif %}>Select an option</option>
+                <option value="gold" {% if selected_topic == 'gold' or form_values.get('interest') == 'gold' %}selected{% endif %}>Physical Gold Acquisition</option>
+                <option value="silver" {% if selected_topic == 'silver' or form_values.get('interest') == 'silver' %}selected{% endif %}>Physical Silver Acquisition</option>
+                <option value="both" {% if selected_topic == 'both' or form_values.get('interest') == 'both' %}selected{% endif %}>Both Gold &amp; Silver</option>
+                <option value="storage" {% if selected_topic == 'storage' or form_values.get('interest') == 'storage' %}selected{% endif %}>Storage Introductions</option>
+                <option value="general" {% if selected_topic == 'general' or form_values.get('interest') == 'general' %}selected{% endif %}>General Enquiry</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Your Message / Requirements</label>
+              <textarea id="message" name="message" rows="5" placeholder="Please specify target quantities, timelines, or any questions..." required>{{ form_values.get('message', initial_message) }}</textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary submit-btn">
+              Submit Enquiry <span>↗</span>
+            </button>
+          </form>
+          {% endif %}
+        </div>
+
+      </div>
+    </section>
+
+ 
+
+  {% include '_footer.html' %}
+</body>
+</html>

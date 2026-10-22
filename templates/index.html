@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FK Physical LLC provides qualifying clients with access to physical gold and silver through its United States operations." />
+  <title>FK Physical LLC | Physical Gold & Silver</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo_Fort_Kobbe_Shield_Transparent.png') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body class="home-page">
+{% include '_loading_screen.html' %}
+
+<header class="site-header" id="site-header">
+  <nav class="navbar container" aria-label="Main Navigation">
+    <a href="{{ url_for('home') }}" class="brand">
+      <div class="brand-mark">
+        <img src="{{ url_for('static', filename='images/Logo_Fort_Kobbe_Shield_Transparent.png') }}" alt="Fort Kobbe shield logo" />
+      </div>
+      FK PHYSICAL ASSETS
+    </a>
+
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-links">
+       <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('about') }}">About</a>
+     
+      <a href="{{ url_for('metals') }}">Gold &amp; Silver</a>
+      <a href="{{ url_for('how_it_works') }}">How It Works</a>
+      
+      <a href="{{ url_for('faqs') }}">FAQs</a>
+      <a href="{{ url_for('contact') }}">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Live Precious Metals Spot Price Ticker Bar -->
+  <div class="metals-ticker-bar">
+    <div class="container ticker-container">
+      <div class="ticker-label">
+        <span class="live-indicator"></span> LIVE SPOT PRICES
+      </div>
+      <div class="ticker-items">
+        <div class="ticker-item">
+          <span class="metal-name">GOLD (XAU/USD)</span>
+          <span class="metal-price" id="gold-price">$2,650.40</span>
+          <span class="metal-change positive" id="gold-change">+0.45%</span>
+        </div>
+        <div class="ticker-divider"></div>
+        <div class="ticker-item">
+          <span class="metal-name">SILVER (XAG/USD)</span>
+          <span class="metal-price" id="silver-price">$31.85</span>
+          <span class="metal-change positive" id="silver-change">+0.82%</span>
+        </div>
+      </div>
+      <div class="ticker-time" id="ticker-timestamp">Updated Live</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+ <!-- Hero Section -->
+<section class="hero" id="home">
+  <div class="hero-content container">
+    <div class="hero-copy">
+      <h1>FK Physical Assets.<br>Independent Access <br>to Physical Assets</h1>
+      
+      <!-- Rotating Paragraph Wrapper -->
+      <div class="hero-slider">
+        <p class="hero-slide active">FK Physical Assets assists private clients, family offices, and businesses in navigating the acquisition, storage, transportation, and management of physical assets.</p>
+        <p class="hero-slide">Through an established international network of suppliers, storage providers, logistics partners, and market participants, we help clients access opportunities across the physical asset sector through a structured and professional process.</p>
+        <p class="hero-slide">Whether acquiring precious metals, arranging secure storage, or accessing specialist industry relationships, we provide independent support from introduction through execution.</p>
+      </div>
+
+      <a href="{{ url_for('contact') }}" class="btn btn-light">Contact Us <span>↗</span></a>
+    </div>
+  </div>
+</section>
+<!-- Home About Section matching exact reference design -->
+<section class="home-about-section section" id="about" aria-labelledby="home-about-title">
+  <div class="container home-about-grid">
+    
+    <!-- Left Column: Copy & Tagline -->
+    <div class="home-about-left">
+      <div class="home-about-heading">
+        <h2 id="home-about-title">
+          ABOUT FK PHYSICAL ASSETS
+        </h2>
+      </div>
+
+      <div class="home-about-copy">
+        <p>FK Physical Assets is an independent consulting and facilitation firm specializing in physical and alternative assets. We work with clients seeking exposure to tangible assets by providing access to industry expertise, established international networks, and practical transaction support.</p>
+        
+        <p>Our role extends beyond facilitating transactions, our role is not simply to facilitate transactions. We help clients understand available options, identify appropriate solutions, and connect with trusted counterparties across multiple jurisdictions.</p>
+        
+        <p>While our primary focus remains precious metals, we also assist clients in navigating broader physical asset opportunities through our network of industry participants and specialist service providers.</p>
+        
+      </div>
+
+      <div class="about-tagline-wrap">
+        <div class="about-gold-divider"></div>
+        <span class="about-tagline">REAL ASSETS. LASTING VALUE.</span>
+      </div>
+    </div>
+
+    <!-- Right Column: Hero Image & 3 Feature Cards -->
+    <div class="home-about-right">
+      <!-- Top Image -->
+      <div class="home-about-image-wrap">
+        <img src="{{ url_for('static', filename='images/d2lkwhz4jCy2knQXYB5r9E7Qio-3HweYJDx22rtK1UVTLDjQINSV-iqguTXfztbjoGYQtWj2gXe5Q4RJnO69TssVz2l_pIP8MTIKYxfx_-SIGbrQdb85Vn6jJwrTfEihrR70Jyhd8SCeXjQ1T0oaf2Kw8iMObBR7BciTmMLNWTsg3sxAnDTVkI8t-mV_oZtv.jfif') }}" alt="Fine Gold and Fine Silver Bars" class="home-about-image" />
+      </div>
+
+      <!-- Bottom 3-Column Feature Cards -->
+      <div class="about-feature-grid">
+        <!-- Card 1 -->
+        <article class="about-feature-card">
+          <div class="feature-card-icon">
+            <span class="asset-icon" style="--icon-image: url('{{ url_for('static', filename='icons/6F4A4C70-F8A3-44F8-A557-AD53A0714A50.png') }}')" aria-hidden="true"></span>
+          </div>
+          <h4>EXPERTISE</h4>
+          <p>In-depth market knowledge and industry experience.</p>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="about-feature-card">
+          <div class="feature-card-icon">
+            <span class="asset-icon" style="--icon-image: url('{{ url_for('static', filename='icons/FBBCC0FC-DC6F-4933-9DE1-4E4D528011CC.png') }}')" aria-hidden="true"></span>
+          </div>
+          <h4>DISCRETION</h4>
+          <p>Your privacy and interests are always protected.</p>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="about-feature-card">
+          <div class="feature-card-icon">
+            <span class="asset-icon" style="--icon-image: url('{{ url_for('static', filename='icons/EBF9DC87-B232-4DBF-BAED-38D749ACC586.png') }}')" aria-hidden="true"></span>
+          </div>
+          <h4>GLOBAL NETWORK</h4>
+          <p>Access to trusted partners and international markets.</p>
+        </article>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Dark Obsidian Banner directly under About Section -->
+<section class="home-about-dark-banner section-image" style="--section-image: url('{{ url_for('static', filename='images/Create_a_dramatic_secure_bullion_vault_showing_row.png') }}');">
+  <div class="container about-banner-content">
+    
+   
+
+    <!-- Right Column: 2x2 Feature Grid -->
+    <div class="about-banner-grid">
+      <div class="about-banner-card">
+        <strong>GLOBAL</strong>
+        <span>Jurisdictional Network</span>
+      </div>
+      <div class="about-banner-card">
+        <strong>ALLOCATED</strong>
+        <span>100% Segregated Asset Vaulting</span>
+      </div>
+      <div class="about-banner-card">
+        <strong>VERIFIED</strong>
+        <span>LBMA Refined Sourcing</span>
+      </div>
+      <div class="about-banner-card">
+        <strong>DIRECT</strong>
+        <span>Private Client Advisory</span>
+      </div>
+    </div>
+
+     <!-- Left Column: Copy -->
+    <div class="about-banner-text">
+      <h2>SECURE ACQUISITION. <br>UNCOMPROMISED PRIVACY.</h2>
+      <p>We work closely with family offices, private investors, and institutions to streamline every stage of physical asset acquisition, vaulting, and transport across world-leading jurisdictions.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Service Highlights with Sunset City Skyline Background -->
+<section class="services-skyline-section section" id="services">
+  <div class="container">
+    
+    <!-- Centered Header -->
+    <div class="services-skyline-header">
+      <h2>Our Services</h2>
+    </div>
+
+    <!-- Summary cards matching the services above -->
+    <div class="services-skyline-grid">
+      
+      <a href="{{ url_for('contact') }}" class="skyline-card">
+        <div class="skyline-card-content">
+          <div class="skyline-icon-wrap">
+            <span class="asset-icon" style="--icon-image: url('{{ url_for('static', filename='icons/CA2A512E-DA4A-483B-8DDD-EEC20BC33D13.png') }}')" aria-hidden="true"></span>
+          </div>
+          <h3>Precious Metals</h3>
+          <p>Assistance with sourcing, evaluating, acquiring, storing, and disposing of physical precious metals through established industry participants.</p>
+        </div>
+      </a>
+
+      <a href="{{ url_for('contact') }}" class="skyline-card">
+        <div class="skyline-card-content">
+          <div class="skyline-icon-wrap">
+            <span class="asset-icon" style="--icon-image: url('{{ url_for('static', filename='icons/EBF9DC87-B232-4DBF-BAED-38D749ACC586.png') }}')" aria-hidden="true"></span>
+          </div>
+          <h3>Asset Sourcing</h3>
+          <p>Access to an international network of suppliers, counterparties, and service providers across selected physical asset categories.</p>
+        </div>
+      </a>
+
+      <a href="{{ url_for('contact') }}" class="skyline-card">
+        <div class="skyline-card-content">
+          <div class="skyline-icon-wrap">
+            <span class="asset-icon" style="--icon-image: url('{{ url_for('static', filename='icons/41EC8540-12C8-499F-9271-0A49F4D1BCB1.png') }}')" aria-hidden="true"></span>
+          </div>
+          <h3>Transaction Facilitation</h3>
+          <p>Support throughout the transaction process, helping clients navigate acquisitions, disposals, and ownership structures efficiently.</p>
+        </div>
+      </a>
+
+      <a href="{{ url_for('contact') }}" class="skyline-card">
+        <div class="skyline-card-content">
+          <div class="skyline-icon-wrap">
+            <span class="asset-icon" style="--icon-image: url('{{ url_for('static', filename='icons/E1A01021-F6CA-4C2A-9D1D-26FA35D6E281.png') }}')" aria-hidden="true"></span>
+          </div>
+          <h3>Storage Solutions</h3>
+          <p>Introduction to secure storage providers and vaulting facilities in selected jurisdictions worldwide.</p>
+        </div>
+      </a>
+
+      <a href="{{ url_for('contact') }}" class="skyline-card">
+        <div class="skyline-card-content">
+          <div class="skyline-icon-wrap">
+            <span class="asset-icon" style="--icon-image: url('{{ url_for('static', filename='icons/967FE979-99CC-403D-B0CB-A20D927D45D8.png') }}')" aria-hidden="true"></span>
+          </div>
+          <h3>International Logistics</h3>
+          <p>Coordination with specialist logistics providers for the secure movement of physical assets across borders.</p>
+        </div>
+      </a>
+
+      <a href="{{ url_for('contact') }}" class="skyline-card">
+        <div class="skyline-card-content">
+          <div class="skyline-icon-wrap">
+            <span class="asset-icon" style="--icon-image: url('{{ url_for('static', filename='icons/54FDEB07-4295-479D-A096-FF3B537644A0.png') }}')" aria-hidden="true"></span>
+          </div>
+          <h3>Alternative Assets</h3>
+          <p>Guidance and access to selected physical and alternative asset opportunities through our established network of industry relationships.</p>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+ <!-- Institutional Assurance Stat Grid Banner -->
+    <section class="banner-base banner-stats section-image" style="--section-image: url('{{ url_for('static', filename='images/gettyimages-1277285182-612x612.jpg') }}');">
+      <div class="container banner-stats-content">
+        <div>
+          <h2>Built on physical security <br>and compliance.</h2>
+          <p>Every transaction is underpinned by rigorous identity verification and streamlined onboarding procedures operating through established United States entities.</p>
+        </div>
+        <div class="stat-grid-wrapper">
+          <div class="stat-card-item">
+            <strong>100%</strong>
+            <span>Physical Asset Allocation</span>
+          </div>
+          <div class="stat-card-item">
+            <strong>US</strong>
+            <span>Based Operations</span>
+          </div>
+          <div class="stat-card-item">
+            <strong>Au/Ag</strong>
+            <span>Focused Specialization</span>
+          </div>
+          <div class="stat-card-item">
+            <strong>1-on-1</strong>
+            <span>Direct Account Support</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Work With FK Physical Assets - Light Edition -->
+<section class="home-why-section section" id="why-us" aria-labelledby="home-why-title">
+  <div class="container home-why-grid">
+    
+    <!-- Left Column: Narrative Content -->
+    <div class="home-why-content">
+      
+   
+
+      <!-- Main Headline -->
+      <h2 id="home-why-title">
+        CLARITY IN A<br>
+        COMPLEX MARKET
+      </h2>
+
+      <!-- Paragraph Copy -->
+      <p class="why-lead-p">
+        The physical asset market can be complex. We make it simpler by providing clear guidance, trusted relationships and practical solutions, so you can move forward with confidence.
+      </p>
+
+      <!-- Bottom 3-Column Pillar Features -->
+      <div class="why-pillars-row">
+        
+        <div class="why-pillar-item">
+          <h4>GLOBAL REACH</h4>
+          <p>Access to international markets and trusted counterparties.</p>
+        </div>
+
+        <div class="why-pillar-divider" aria-hidden="true"></div>
+
+        <div class="why-pillar-item">
+          <h4>ESTABLISHED PARTNERSHIPS</h4>
+          <p>Long-standing relationships across the industry.</p>
+        </div>
+
+        <div class="why-pillar-divider" aria-hidden="true"></div>
+
+        <div class="why-pillar-item">
+          <h4>CLIENT FOCUSED</h4>
+          <p>Personalised support at every stage.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Right Column: Gold & Silver Image -->
+    <div class="home-why-image-wrap">
+      <img src="{{ url_for('static', filename='images/WhatsApp Image 2026-06-24 at 8.13.45 PM.jpg') }}" alt="FK Physical Assets - Gold and Silver Coins" class="home-why-image" />
+    </div>
+
+  </div>
+</section>
+    
+<!-- Premium Editorial Quote & Metric Ribbon Banner -->
+<section class="editorial-banner-section section-image" style="--section-image: url('{{ url_for('static', filename='images/Create_a_dramatic_secure_bullion_vault_showing_row.png') }}');">
+  <div class="container editorial-banner-container">
+    
+    <!-- Top Editorial Header & Tagline -->
+    <div class="editorial-banner-header">
+     
+      <h2>SECURE ACQUISITION. <br>UNCOMPROMISED PRIVACY.</h2>
+      <p class="editorial-lead">We work closely with family offices, private investors, and institutions to streamline every stage of physical asset acquisition, vaulting, and transport across world-leading jurisdictions.</p>
+    </div>
+
+    <!-- Bottom Horizontal Metric Strip (No Boxed Cards) -->
+    <div class="editorial-metric-ribbon">
+      <div class="metric-item">
+        <span class="metric-value">GLOBAL</span>
+        <span class="metric-label">Jurisdictional Network</span>
+      </div>
+      <div class="metric-divider"></div>
+
+      <div class="metric-item">
+        <span class="metric-value">100%</span>
+        <span class="metric-label">Segregated Asset Vaulting</span>
+      </div>
+      <div class="metric-divider"></div>
+
+      <div class="metric-item">
+        <span class="metric-value">LBMA</span>
+        <span class="metric-label">Refined Sourcing</span>
+      </div>
+      <div class="metric-divider"></div>
+
+      <div class="metric-item">
+        <span class="metric-value">DIRECT</span>
+        <span class="metric-label">Private Advisory Support</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- Our Expertise / Process Section matching reference image -->
+<section class="value-section section" id="about" aria-labelledby="expertise-title">
+  <div class="container value-grid">
+    
+    <!-- Left Column: Tall Vault Image -->
+    <div class="value-visual-wrap">
+      <img class="value-image" src="{{ url_for('static', filename='images/aboutimage.jfif') }}" alt="Secure Vault Storage" />
+    </div>
+
+    <!-- Right Column: Heading, Intro, and 4-Step Process Flow -->
+    <div class="value-copy">
+      
+      <!-- Eyebrow & Heading -->
+      <div class="expertise-header">
+        <div class="eyebrow-wrapper">
+          <div class="eyebrow-line" aria-hidden="true"></div>
+        </div>
+        <h2 id="expertise-title">
+          Expertise. Access.<br>
+          Confidence.
+        </h2>
+        <p class="expertise-intro">
+          We guide you through every step, from initial consultation to long-term support, ensuring a seamless and secure experience in the physical metals market.
+        </p>
+      </div>
+
+      <!-- 4-Step Process Sequence -->
+      <div class="expertise-process-flow">
+        
+        <!-- Step 01 -->
+        <div class="process-flow-step">
+          <div class="flow-step-circle">01</div>
+          <h4>UNDERSTAND</h4>
+          <p>We learn about your goals and requirements.</p>
+        </div>
+
+        <div class="flow-step-arrow" aria-hidden="true">&rarr;</div>
+
+        <!-- Step 02 -->
+        <div class="process-flow-step">
+          <div class="flow-step-circle">02</div>
+          <h4>CONNECT</h4>
+          <p>We source the right suppliers and opportunities.</p>
+        </div>
+
+        <div class="flow-step-arrow" aria-hidden="true">&rarr;</div>
+
+        <!-- Step 03 -->
+        <div class="process-flow-step">
+          <div class="flow-step-circle">03</div>
+          <h4>COORDINATE</h4>
+          <p>We manage logistics, documentation and secure transfer.</p>
+        </div>
+
+        <div class="flow-step-arrow" aria-hidden="true">&rarr;</div>
+
+        <!-- Step 04 -->
+        <div class="process-flow-step">
+          <div class="flow-step-circle">04</div>
+          <h4>SUPPORT</h4>
+          <p>We remain available for ongoing guidance and assistance.</p>
+        </div>
+
+      </div>
+
+      <!-- Bottom Tagline Divider -->
+      <div class="expertise-bottom-tagline">
+        <div class="tagline-gold-rule" aria-hidden="true"></div>
+        <span>YOUR TRUST. OUR PRIORITY.</span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+ <!-- CTA Banner: Physical Gold Enquiry -->
+<section class="enquiry-banner section">
+  <div class="container">
+    <div class="enquiry-banner-content">
+      <h2>Let's Start a Conversation</h2>
+      <p>Whether you are exploring physical precious metals, evaluating storage options, seeking access to specialist providers, or looking for assistance navigating the physical asset market, our team is available to help.</p>
+      <p>Contact us today to discuss your requirements and learn how FK Physical Assets can assist.</p>
+      <a href="{{ url_for('contact') }}" class="btn btn-light">
+        Contact Us <span>&#8599;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Who We Work With Section -->
+<section class="section who-we-work-with-section" id="who-we-work-with">
+  <div class="container">
+    
+      <h2>Who We Work With</h2>
+      <p>We assist private clients, family offices, businesses, and professional advisors with physical asset requirements.</p>
+  
+<br>
+<br>
+    <div class="who-we-work-with-grid">
+      
+      <!-- Card 1: Private Clients -->
+      <article class="client-card">
+        <div class="client-card-icon">
+          <span class="asset-icon" style="--icon-image: url('{{ url_for('static', filename='icons/1D4A7662-4883-44B9-99A5-6004F39F5A9D.png') }}')" aria-hidden="true"></span>
+        </div>
+        <div class="client-card-body">
+          <h3>Private Clients</h3>
+          <p>Individuals seeking access to physical assets as part of a broader wealth preservation or diversification strategy.</p>
+        </div>
+      </article>
+
+      <!-- Card 2: High-Net-Worth Individuals -->
+      <article class="client-card">
+        <div class="client-card-icon">
+          <span class="asset-icon" style="--icon-image: url('{{ url_for('static', filename='icons/DA14A5C5-1E92-4930-B077-95B8830D937A.png') }}')" aria-hidden="true"></span>
+        </div>
+        <div class="client-card-body">
+          <h3>High-Net-Worth Individuals</h3>
+          <p>Clients requiring access to specialist providers, international storage solutions, private transactions, and tailored support.</p>
+        </div>
+      </article>
+
+      <!-- Card 3: Family Offices -->
+      <article class="client-card">
+        <div class="client-card-icon">
+          <span class="asset-icon" style="--icon-image: url('{{ url_for('static', filename='icons/FBBCC0FC-DC6F-4933-9DE1-4E4D528011CC.png') }}')" aria-hidden="true"></span>
+        </div>
+        <div class="client-card-body">
+          <h3>Family Offices</h3>
+          <p>Families seeking long-term relationships, trusted introductions, and assistance navigating opportunities across the physical asset sector.</p>
+        </div>
+      </article>
+
+      <!-- Card 4: Corporate Clients -->
+      <article class="client-card">
+        <div class="client-card-icon">
+          <span class="asset-icon" style="--icon-image: url('{{ url_for('static', filename='icons/488F1072-4DE5-4433-8EBC-36D3D2FE11E8.png') }}')" aria-hidden="true"></span>
+        </div>
+        <div class="client-card-body">
+          <h3>Corporate Clients</h3>
+          <p>Businesses requiring sourcing assistance, logistics coordination, supplier introductions, or support with physical asset transactions.</p>
+        </div>
+      </article>
+
+      <!-- Card 5: Professional Advisors -->
+      <article class="client-card">
+        <div class="client-card-icon">
+          <span class="asset-icon" style="--icon-image: url('{{ url_for('static', filename='icons/E122B69F-3B9F-4F2A-978F-03577985E94A.png') }}')" aria-hidden="true"></span>
+        </div>
+        <div class="client-card-body">
+          <h3>Professional Advisors</h3>
+          <p>Law firms, accountants, wealth managers, and other professional advisors seeking specialist support for clients with physical asset requirements.</p>
+        </div>
+      </article>
+      
+<!-- Card 6: Institutional & Investment Partners -->
+<article class="client-card">
+  <div class="client-card-icon">
+    <span class="asset-icon" style="--icon-image: url('{{ url_for('static', filename='icons/FBBCC0FC-DC6F-4933-9DE1-4E4D528011CC.png') }}')" aria-hidden="true"></span>
+  </div>
+  <div class="client-card-body">
+    <h3>Institutional &amp; Investment Partners</h3>
+    <p>Investment firms, institutions, and specialist market participants seeking access to physical asset opportunities, established counterparties, and tailored transaction support.</p>
+  </div>
+</article>
+
+      
+    </div>
+  </div>
+</section>
+<!-- Ultra-Luxury Split Narrative & Metric Banner -->
+<section class="luxury-split-banner section-image" style="--section-image: url('{{ url_for('static', filename='images/Create_a_dramatic_secure_bullion_vault_showing_row.png') }}');">
+  <div class="container luxury-split-container">
+    
+    <!-- Left Column: High-Impact Editorial Statement -->
+    <div class="luxury-split-narrative">
+     
+      <h2>SECURE ACQUISITION.<br>UNCOMPROMISED PRIVACY.</h2>
+      <p>We work closely with family offices, private investors, and financial institutions to streamline every stage of physical asset acquisition, vaulting, and transport across world-leading jurisdictions.</p>
+    </div>
+
+    <!-- Right Column: Stacked Architectural Metric Rows -->
+    <div class="luxury-split-metrics">
+      
+      <div class="luxury-metric-row">
+        <div class="luxury-metric-key">GLOBAL</div>
+        <div class="luxury-metric-info">
+          <h4>Jurisdictional Network</h4>
+          <p>Access to premier international vaulting hubs and secure logistics.</p>
+        </div>
+      </div>
+
+      <div class="luxury-metric-row">
+        <div class="luxury-metric-key">100%</div>
+        <div class="luxury-metric-info">
+          <h4>Segregated Asset Vaulting</h4>
+          <p>Fully allocated physical holdings held directly in client name.</p>
+        </div>
+      </div>
+
+      <div class="luxury-metric-row">
+        <div class="luxury-metric-key">LBMA</div>
+        <div class="luxury-metric-info">
+          <h4>Refined Sourcing</h4>
+          <p>Verified good delivery bars directly from accredited refiners.</p>
+        </div>
+      </div>
+
+      <div class="luxury-metric-row">
+        <div class="luxury-metric-key">DIRECT</div>
+        <div class="luxury-metric-info">
+          <h4>Private Client Advisory</h4>
+          <p>Bespoke execution support from introduction through settlement.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Who We Work With / Products Catalog Section -->
+<section class="section products-catalog-section" id="products">
+  <div class="container">
+    
+    <!-- Section Header with Navigation Controls -->
+    <div class="products-header-row">
+      <div class="products-header">
+        <h2>Our products</h2>
+        <p class="products-intro-text">
+          We assist private clients, family offices, businesses, and professional advisors with physical asset requirements.
+        </p>
+      </div>
+
+      <!-- Carousel Navigation Buttons -->
+      <div class="products-carousel-nav">
+        <button class="carousel-btn prev-btn" id="products-prev" aria-label="Previous cards">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        </button>
+        <button class="carousel-btn next-btn" id="products-next" aria-label="Next cards">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Single-Line Scrollable Carousel Track -->
+    <div class="products-carousel-track" id="products-track">
+      
+      <!-- Card 1: Private Clients -->
+      <article class="product-card">
+        <div class="product-card-image">
+          <img src="{{ url_for('static', filename='images/WhatsApp Image 2026-06-25 at 5.09.12 PM (1).jpg') }}" alt="Physical assets available to private clients" />
+        </div>
+        <div class="product-card-body">
+          <h3>Private Clients</h3>
+          <p>Individuals seeking access to physical assets as part of a broader wealth preservation or diversification strategy.</p>
+          <a href="{{ url_for('contact') }}" class="product-link">Discuss your requirements <span>→</span></a>
+        </div>
+      </article>
+
+      <!-- Card 2: High Net Worth Individuals -->
+      <article class="product-card">
+        <div class="product-card-image">
+          <img src="{{ url_for('static', filename='images/WhatsApp Image 2026-06-24 at 8.13.45 PM.jpg') }}" alt="Physical asset services for high-net-worth individuals" />
+        </div>
+        <div class="product-card-body">
+          <h3>High-Net-Worth Individuals</h3>
+          <p>Clients requiring access to specialist providers, international storage solutions, private transactions, and tailored support.</p>
+          <a href="{{ url_for('contact') }}" class="product-link">Discuss your requirements <span>→</span></a>
+        </div>
+      </article>
+
+      <!-- Card 3: Family Offices -->
+      <article class="product-card">
+        <div class="product-card-image">
+          <img src="{{ url_for('static', filename='images/WhatsApp Image 2026-06-25 at 5.09.09 PM (2).jpg') }}" alt="Physical asset relationships for family offices" />
+        </div>
+        <div class="product-card-body">
+          <h3>Family Offices</h3>
+          <p>Families seeking long-term relationships, trusted introductions, and assistance navigating opportunities across the physical asset sector.</p>
+          <a href="{{ url_for('contact') }}" class="product-link">Discuss your requirements <span>→</span></a>
+        </div>
+      </article>
+
+      <!-- Card 4: Corporate Clients -->
+      <article class="product-card">
+        <div class="product-card-image">
+          <img src="{{ url_for('static', filename='images/WhatsApp Image 2026-06-25 at 5.09.13 PM (1).jpg') }}" alt="Physical asset transaction support for businesses" />
+        </div>
+        <div class="product-card-body">
+          <h3>Corporate Clients</h3>
+          <p>Businesses requiring sourcing assistance, logistics coordination, supplier introductions, or support with physical asset transactions.</p>
+          <a href="{{ url_for('contact') }}" class="product-link">Discuss your requirements <span>→</span></a>
+        </div>
+      </article>
+
+      <!-- Card 5: Professional Advisors -->
+      <article class="product-card">
+        <div class="product-card-image">
+          <img src="{{ url_for('static', filename='images/WhatsApp Image 2026-06-25 at 5.09.11 PM.jpg') }}" alt="Professional advisors supporting clients with physical assets" />
+        </div>
+        <div class="product-card-body">
+          <h3>Professional Advisors</h3>
+          <p>Law firms, accountants, wealth managers, and other professional advisors seeking specialist support for clients with physical asset requirements.</p>
+          <a href="{{ url_for('contact') }}" class="product-link">Discuss your requirements <span>→</span></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Process Section with Vault Background & Linear Process Flow -->
+<section class="process-section section" id="how-it-works">
+  <div class="container">
+    
+
+      
+        
+              <h2>Our Approach</h2>
+<br>
+  <br>
+     
+  
+    <!-- Process Timeline / Card Grid -->
+    <div class="process-flow-wrapper">
+      
+      <article class="process-card">
+        <div class="process-card-top">
+          <span class="process-step-badge">01</span>
+          <span class="process-connector"></span>
+        </div>
+        <h3>Understand</h3>
+        <p>Every client begins with a conversation. We take the time to understand your objectives, requirements, preferences, and circumstances before recommending potential solutions.</p>
+      </article>
+
+      <article class="process-card">
+        <div class="process-card-top">
+          <span class="process-step-badge">02</span>
+          <span class="process-connector"></span>
+        </div>
+        <h3>Identify</h3>
+        <p>Using our network and market knowledge, we identify appropriate suppliers, storage providers, logistics partners, and other relevant service providers.</p>
+      </article>
+
+      <article class="process-card">
+        <div class="process-card-top">
+          <span class="process-step-badge">03</span>
+          <span class="process-connector"></span>
+        </div>
+        <h3>Coordinate</h3>
+        <p>Where required, we assist in coordinating introductions, facilitating communication, and supporting the transaction process.</p>
+      </article>
+
+      <article class="process-card">
+        <div class="process-card-top">
+          <span class="process-step-badge">04</span>
+          <span class="process-connector"></span>
+        </div>
+        <h3>Support</h3>
+        <p>Our involvement does not necessarily end at acquisition. We can continue assisting with storage arrangements, logistics, future disposals, and ongoing requirements.</p>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+  <!-- Storage Section -->
+  <section class="storage-section section" id="storage">
+    <div class="container storage-grid">
+      <div class="storage-image-wrap">
+        <img src="{{ url_for('static', filename='images/Create_a_premium_newsletter_background_featuring_c.png') }}" alt="Secure precious metals vault" />
+      </div>
+
+      <div class="storage-content">
+        <div class="storage-heading">
+          <h2>Storage Solutions</h2>
+        </div>
+        <div class="storage-copy">
+          <p>We introduce clients to secure storage providers and vaulting facilities in selected jurisdictions worldwide.</p>
+          <p>Through our international network, we help clients explore storage options suited to their physical asset requirements and coordinate with specialist providers.</p>
+          <a href="{{ url_for('contact') }}" class="btn btn-primary">Discuss storage solutions <span>↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!-- CTA Banner: Secure Today. Stronger Tomorrow. -->
+<section class="banner-cta-gold section">
+  <div class="container">
+    <div class="banner-cta-content">
+          <h2>Independent support for physical assets.</h2>
+          <p style="text-align:center;">Contact us to discuss your requirements and learn how FK Physical Assets can assist with sourcing, storage, logistics, and transaction support.</p>
+              <a href="{{ url_for('contact') }}" class="btn btn-light">Contact Us <span>↗</span></a>
+
+    </div>
+  </div>
+</section>
+  <!-- Timeline Section -->
+  <section class="banner-base banner-timeline">
+    <div class="container">
+      <div class="section-heading centered">
+        <h2>Support Through the Asset Lifecycle</h2>
+      </div>
+      <div class="timeline-grid-four">
+        <div class="timeline-step-card">
+          <span class="step-num">01.</span>
+          <h4>Client Objectives</h4>
+          <p>We take time to understand your objectives, requirements, preferences, and circumstances.</p>
+        </div>
+        <div class="timeline-step-card">
+          <span class="step-num">02.</span>
+          <h4>Industry Network</h4>
+          <p>We identify relevant suppliers, storage providers, logistics partners, and other service providers.</p>
+        </div>
+        <div class="timeline-step-card">
+          <span class="step-num">03.</span>
+          <h4>Transaction Support</h4>
+          <p>We can coordinate introductions, facilitate communication, and support the transaction process.</p>
+        </div>
+        <div class="timeline-step-card">
+          <span class="step-num">04.</span>
+          <h4>Ongoing Requirements</h4>
+          <p>We can continue assisting with storage arrangements, logistics, future disposals, and ongoing requirements.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- FAQs Section -->
+  <section class="faq-section section" id="faqs">
+    <div class="container">
+      <div class="section-heading centered">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-accordion-container">
+        <details class="faq-item">
+          <summary class="faq-question">
+            <h3>What does FK Physical Assets do?</h3>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>FK Physical Assets is an independent consulting and facilitation firm that assists clients with sourcing, introductions, transaction support, storage coordination, and logistics relating to physical and alternative assets.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <h3>Does FK Physical Assets sell precious metals directly?</h3>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>FK Physical Assets primarily operates as a consulting and intermediary business. We assist clients in identifying opportunities and connecting with appropriate suppliers, service providers, and market participants.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <h3>Can you help arrange storage?</h3>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Yes. We can introduce clients to secure storage providers and vaulting facilities in selected jurisdictions around the world.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <h3>Can you assist with international logistics?</h3>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Yes. We work with specialist logistics providers and can assist with coordinating the transportation of physical assets where required.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <h3>Do you only work with precious metals?</h3>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>No. While precious metals remain our primary area of focus, we also assist clients with other categories of physical and alternative assets through our established network of industry relationships.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <h3>Do you provide financial advice?</h3>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>No. FK Physical Assets does not provide investment, legal, tax, or financial advice. Clients should seek advice from appropriately qualified professionals before making investment decisions.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <h3>How do I get started?</h3>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Contact our team to arrange an initial discussion. We will take the time to understand your objectives and determine how we may be able to assist.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container footer-top">
+    <div class="footer-brand">
+      <a href="#" class="brand">
+        <div class="brand-mark">
+          <img src="{{ url_for('static', filename='images/Logo_Fort_Kobbe_Shield_Transparent.png') }}" alt="Fort Kobbe shield logo" />
+        </div>
+        <span>FK PHYSICAL ASSETS</span>
+      </a>
+    </div>
+
+    <div class="footer-column">
+      <h4>Company</h4>
+      <a href="#about">About</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#faqs">FAQs</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>Services</h4>
+      <a href="#services">Asset sourcing</a>
+      <a href="#services">Transaction support</a>
+      <a href="#storage">Storage solutions</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>Contact</h4>
+      <a href="mailto:info@fkphysical.com">info@fkphysical.com</a>
+      <a href="tel:+18222585878">+1 (822) 258-5787</a>
+      <a href="{{ url_for('contact') }}">International logistics</a>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <span>© 2026 FK Physical Assets. All rights reserved.</span>
+    <div>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function initScrollReveals() {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      return;
+    }
+
+    const selectors = [
+      '.hero-copy',
+      '.services-heading',
+      '.service-card',
+      '.services-skyline-header',
+      '.skyline-card',
+      '.value-copy',
+      '.value-visual',
+      '.value-point-card',
+      '.enquiry-banner-content',
+      '.products-header',
+      '.product-card',
+      '.process-header-split',
+      '.process-card',
+      '.storage-image-wrap',
+      '.storage-content',
+      '.banner-cta-content',
+      '.banner-timeline .section-heading',
+      '.timeline-step-card',
+      '.banner-stats-content > div',
+      '.faq-section .section-heading',
+      '.faq-item',
+      '.footer-brand',
+      '.footer-column',
+      '.footer-bottom'
+    ];
+    const targets = document.querySelectorAll(selectors.join(', '));
+    const revealCounts = new Map();
+
+    targets.forEach((target) => {
+      const parent = target.parentElement;
+      const revealIndex = revealCounts.get(parent) || 0;
+      revealCounts.set(parent, revealIndex + 1);
+
+      target.dataset.scrollReveal = 'up';
+      const isSkylineCard = target.matches('.services-skyline-section .skyline-card');
+      const delay = isSkylineCard ? revealIndex * 85 : Math.min(revealIndex * 80, 320);
+      target.dataset.scrollRevealDelay = String(delay);
+      target.style.setProperty('--scroll-reveal-delay', `${isSkylineCard ? 0 : delay}ms`);
+    });
+
+    document.body.classList.add('has-scroll-reveal');
+
+    const observer = new IntersectionObserver((entries, currentObserver) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const target = entry.target;
+          const revealDelay = Number(target.dataset.scrollRevealDelay) || 0;
+          const reveal = () => target.classList.add('is-scroll-visible');
+
+          if (target.matches('.services-skyline-section .skyline-card') && revealDelay > 0) {
+            window.setTimeout(reveal, revealDelay);
+          } else {
+            reveal();
+          }
+
+          currentObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -36px 0px'
+    });
+
+    targets.forEach((target) => observer.observe(target));
+  }
+
+  initScrollReveals();
+
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', (event) => {
+      event.stopPropagation();
+      navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+      const isExpanded = navLinks.classList.contains('active');
+      menuToggle.setAttribute('aria-expanded', String(isExpanded));
+    });
+
+    document.querySelectorAll('.nav-links a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  async function fetchLiveMetals() {
+    const goldPriceEl = document.getElementById('gold-price');
+    const silverPriceEl = document.getElementById('silver-price');
+    const goldChangeEl = document.getElementById('gold-change');
+    const silverChangeEl = document.getElementById('silver-change');
+    const timestampEl = document.getElementById('ticker-timestamp');
+
+    if (!goldPriceEl || !silverPriceEl || !timestampEl) {
+      return;
+    }
+
+    try {
+      const response = await fetch("{{ url_for('live_metals') }}", { cache: 'no-store' });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const data = await response.json();
+      const gold = data.gold || {};
+      const silver = data.silver || {};
+
+      const goldPrice = Number(gold.price || 0);
+      const silverPrice = Number(silver.price || 0);
+
+      goldPriceEl.textContent = `$${goldPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      silverPriceEl.textContent = `$${silverPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+      const setChange = (element, value) => {
+        if (!element) {
+          return;
+        }
+
+        const numericValue = Number(value || 0);
+        const isPositive = numericValue >= 0;
+        element.textContent = `${isPositive ? '+' : ''}${numericValue.toFixed(2)}%`;
+        element.classList.remove('positive', 'negative');
+        element.classList.add(isPositive ? 'positive' : 'negative');
+      };
+
+      setChange(goldChangeEl, gold.change_percent);
+      setChange(silverChangeEl, silver.change_percent);
+
+      const updated = new Date(data.updated_at || Date.now());
+      timestampEl.textContent = `Live at ${updated.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+    } catch (error) {
+      console.error('Metals price ticker could not refresh:', error);
+    }
+  }
+
+  fetchLiveMetals();
+  setInterval(fetchLiveMetals, 60000);
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+  const slides = document.querySelectorAll('.hero-slide');
+  if (slides.length === 0) return;
+
+  let currentSlide = 0;
+  const slideInterval = 5000; // Change text every 5 seconds (5000ms)
+
+  setInterval(() => {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }, slideInterval);
+});
+document.addEventListener('DOMContentLoaded', () => {
+  const track = document.getElementById('products-track');
+  const prevBtn = document.getElementById('products-prev');
+  const nextBtn = document.getElementById('products-next');
+
+  if (track && prevBtn && nextBtn) {
+    // Scroll distance equal to one card width + gap
+    const scrollAmount = 360;
+
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({
+        left: -scrollAmount,
+        behavior: 'smooth'
+      });
+    });
+  }
+});
+</script>
+<script src="{{ url_for('static', filename='particle-bg.js') }}"></script>
+</body>
+</html>

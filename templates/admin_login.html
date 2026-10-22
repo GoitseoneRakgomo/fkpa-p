@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin sign in | FK Physical</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}" />
+</head>
+<body class="login-body">
+  <main class="login-card">
+    <a class="admin-brand login-brand" href="{{ url_for('home') }}">
+      <span class="admin-brand-mark">FK</span>
+      <span><strong>FK PHYSICAL</strong><small>ADMINISTRATION</small></span>
+    </a>
+    <h1>Welcome back</h1>
+    <p class="login-intro">Sign in to manage your admin workspace.</p>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-stack">
+          {% for category, message in messages %}
+            <div class="flash-message {{ category }}" role="alert">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    <form class="admin-form" action="{{ url_for('admin_login') }}" method="post">
+      <input type="hidden" name="csrf_token" value="{{ admin_csrf_token }}" />
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" autocomplete="username" required autofocus />
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required />
+      <button class="admin-button" type="submit">Sign in</button>
+    </form>
+    <a class="back-to-site" href="{{ url_for('home') }}">← Back to website</a>
+  </main>
+</body>
+</html>

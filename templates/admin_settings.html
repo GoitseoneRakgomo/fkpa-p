@@ -1,0 +1,19 @@
+{% extends "admin/base.html" %}
+{% block title %}Settings{% endblock %}
+{% block breadcrumb %}Settings{% endblock %}
+{% block content %}
+  <div class="page-heading"><div><h1>Settings</h1><p>Manage your administrator account.</p></div></div>
+  <section class="admin-panel settings-panel">
+    <div class="panel-heading"><div><h2>Change password</h2><p>Choose a unique password with at least 8 characters.</p></div></div>
+    <form class="settings-form" action="{{ url_for('admin_settings') }}" method="post">
+      <input type="hidden" name="csrf_token" value="{{ admin_csrf_token }}" />
+      <label for="current-password">Current password</label>
+      <input id="current-password" name="current_password" type="password" autocomplete="current-password" required />
+      <label for="new-password">New password</label>
+      <input id="new-password" name="new_password" type="password" minlength="8" autocomplete="new-password" required />
+      <label for="confirm-password">Confirm new password</label>
+      <input id="confirm-password" name="confirm_password" type="password" minlength="8" autocomplete="new-password" required />
+      <button class="admin-button" type="submit">Update password</button>
+    </form>
+  </section>
+{% endblock %}

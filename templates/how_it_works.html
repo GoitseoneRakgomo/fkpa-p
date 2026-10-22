@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn how to purchase physical precious metals through FK Physical LLC." />
+  <title>How It Works | FK Physical LLC</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo_Fort_Kobbe_Shield_Transparent.png') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body class="inner-page how-it-works-page">
+  {% include '_header.html' %}
+  <main>
+       
+
+    <section class="page-hero page-hero-plain" style="background-image: url('{{ url_for('static', filename='images/h77.jfif') }}');">
+      <div class="container">
+        <h1>A straightforward<br>acquisition process.</h1>
+        <p>From initial enquiry through onboarding, payment and completion, our team guides every stage.</p>
+      </div>
+    </section>
+
+    <section class="section process-page-section section-image">
+      <div class="container">
+        <div class="section-heading centered process-intro">
+          <h2>Five clear steps.<br>Personal support throughout.</h2>
+          <p>Every acquisition follows a defined process, so you know what is required before moving forward.</p>
+        </div>
+        <div class="process-page-grid">
+          <article><span>01</span><h2>Enquire</h2><p>Tell us what you are looking to purchase and our team will discuss your requirements with you.</p></article>
+          <article><span>02</span><h2>Complete onboarding</h2><p>All clients are required to complete FK Physical's onboarding and compliance process before transacting.</p></article>
+          <article><span>03</span><h2>Confirm your purchase</h2><p>Once approved, we confirm available products, quantities and transaction pricing with you.</p></article>
+          <article><span>04</span><h2>Make payment</h2><p>Transactions are completed through FK Physical LLC's United States operations. Clients must be willing and able to remit payment in accordance with our US payment instructions.</p></article>
+          <article><span>05</span><h2>Complete your transaction</h2><p>Once payment and transaction requirements are satisfied, your purchase is completed and the next steps for delivery or transfer can be arranged.</p></article>
+        </div>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary">Start an enquiry <span>↗</span></a>
+      </div>
+    </section>
+    
+    <section class="process-assurance-banner section-image" style="--section-image: url('{{ url_for('static', filename='images/h88.jfif') }}');">
+      <div class="container process-assurance-content">
+        <div>
+          <h2>Clarity at every step.<br>Confidence in every decision.</h2>
+          <p>Our team explains the product, transaction pricing and required next steps before you decide how to proceed.</p>
+        </div>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary">Speak with our team <span>↗</span></a>
+      </div>
+    </section>
+
+    <section class="section process-details-section section-image">
+      <div class="container">
+        <div class="section-heading centered">
+          <h2>Clear terms before<br>you proceed.</h2>
+          <p>We take time to explain the practical details of a physical metals purchase before a transaction is confirmed.</p>
+        </div>
+        <div class="process-info-grid">
+          <article>
+            <span>01 / PRODUCT</span>
+            <h3>Availability &amp; pricing</h3>
+            <p>Discuss available gold or silver products, quantities and transaction pricing directly with our team.</p>
+          </article>
+          <article>
+            <span>02 / ONBOARDING</span>
+            <h3>Client verification</h3>
+            <p>Before transacting, each client completes the required identity verification, onboarding and compliance steps.</p>
+          </article>
+          <article>
+            <span>03 / CONFIRMATION</span>
+            <h3>Review before commitment</h3>
+            <p>Once onboarding is approved, the product, quantity, pricing and transaction requirements are confirmed with you.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="section process-completion-section section-image" >
+      <div class="container process-completion-grid">
+        <div class="process-completion-heading">
+          <h2>From payment to<br>transaction completion.</h2>
+          <p>Purchases are completed through FK Physical LLC's United States operations and follow the agreed transaction requirements.</p>
+        </div>
+        <div class="process-completion-panel">
+          <h3>What happens next</h3>
+          <ul class="process-completion-list">
+            <li><span>01</span><p>Payment instructions are provided for the confirmed transaction.</p></li>
+            <li><span>02</span><p>Payment and transaction requirements are reviewed before completion.</p></li>
+            <li><span>03</span><p>After completion, next steps for delivery or transfer can be discussed and arranged.</p></li>
+          </ul>
+          <a href="{{ url_for('contact') }}" class="process-text-link">Ask us about the process <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  {% include '_footer.html' %}
+  <script>
+    const processPage = document.querySelector('.how-it-works-page');
+    const processSections = document.querySelectorAll('.how-it-works-page main > section:not(.page-hero)');
+
+    if (processPage && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      processPage.classList.add('process-motion-ready');
+
+      const revealItems = [];
+      processSections.forEach((section) => {
+        const content = section.querySelector('.container');
+        if (content) {
+          content.classList.add('process-reveal');
+          revealItems.push(content);
+        }
+
+        section.querySelectorAll('.process-page-grid article, .process-info-grid article, .process-completion-list li').forEach((item) => {
+          item.classList.add('process-reveal');
+          revealItems.push(item);
+        });
+      });
+
+      const processObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14, rootMargin: '0px 0px -36px 0px' });
+
+      revealItems.forEach((item) => processObserver.observe(item));
+    }
+  </script>
+</body>
+</html>

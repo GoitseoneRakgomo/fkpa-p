@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Admin{% endblock %} | FK Physical</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}" />
+</head>
+<body class="admin-body">
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <a class="admin-brand" href="{{ url_for('admin_dashboard') }}">
+      <span class="admin-brand-mark">FK</span>
+      <span><strong>FK PHYSICAL</strong><small>ADMINISTRATION</small></span>
+    </a>
+
+    <div class="sidebar-label">WORKSPACE</div>
+    <nav class="admin-nav" aria-label="Admin navigation">
+      <a href="{{ url_for('admin_dashboard') }}" class="{% if request.endpoint == 'admin_dashboard' %}active{% endif %}">
+        <span class="nav-icon">▦</span> Dashboard
+      </a>
+      <a href="{{ url_for('admin_notifications') }}" class="{% if request.endpoint == 'admin_notifications' %}active{% endif %}">
+        <span class="nav-icon">♧</span> Notifications
+        {% if unread_notifications|default(0) %}<span class="nav-badge">{{ unread_notifications }}</span>{% endif %}
+      </a>
+      <a href="{{ url_for('admin_orders') }}" class="{% if request.endpoint == 'admin_orders' %}active{% endif %}">
+        <span class="nav-icon">▤</span> Orders
+      </a>
+    </nav>
+
+    <div class="sidebar-label sidebar-label-bottom">PREFERENCES</div>
+    <nav class="admin-nav">
+      <a href="{{ url_for('admin_settings') }}" class="{% if request.endpoint == 'admin_settings' %}active{% endif %}">
+        <span class="nav-icon">⚙</span> Settings
+      </a>
+      <a href="{{ url_for('home') }}" target="_blank" rel="noopener">
+        <span class="nav-icon">↗</span> View website
+      </a>
+    </nav>
+
+    <div class="sidebar-user">
+      <div class="user-avatar">A</div>
+      <div class="user-details"><strong>{{ admin_username }}</strong><small>Administrator</small></div>
+      <form action="{{ url_for('admin_logout') }}" method="post">
+        <input type="hidden" name="csrf_token" value="{{ admin_csrf_token }}" />
+        <button class="logout-button" type="submit" aria-label="Sign out" title="Sign out">↪</button>
+      </form>
+    </div>
+  </aside>
+
+  <div class="admin-main">
+    <header class="admin-topbar">
+      <button class="sidebar-toggle" type="button" aria-label="Toggle sidebar" aria-expanded="false">☰</button>
+      <div class="topbar-title">{% block breadcrumb %}Administration{% endblock %}</div>
+      <a class="topbar-link" href="{{ url_for('admin_notifications') }}">Notifications</a>
+    </header>
+
+    <main class="admin-content">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-stack">
+            {% for category, message in messages %}
+              <div class="flash-message {{ category }}" role="status">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+
+  <script>
+    const sidebar = document.getElementById('admin-sidebar');
+    const toggle = document.querySelector('.sidebar-toggle');
+    toggle.addEventListener('click', () => {
+      const isOpen = sidebar.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+  </script>
+</body>
+</html>

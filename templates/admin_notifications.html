@@ -1,0 +1,27 @@
+{% extends "admin/base.html" %}
+{% block title %}Notifications{% endblock %}
+{% block breadcrumb %}Notifications{% endblock %}
+{% block content %}
+  <div class="page-heading"><div><h1>Notifications</h1><p>Stay up to date with changes in your workspace.</p></div></div>
+  <section class="admin-panel">
+    <div class="panel-heading"><div><h2>All notifications</h2><p>{{ unread_count }} unread</p></div></div>
+    {% if notifications %}
+      <div class="notification-list">
+        {% for notification in notifications %}
+          <article class="notification-item {% if not notification.is_read %}unread{% endif %}">
+            <span class="notification-dot"></span>
+            <div class="notification-copy"><h3>{{ notification.title }}</h3><p>{{ notification.message }}</p><time>{{ notification.created_at|replace('T', ' ') }} UTC</time></div>
+            {% if not notification.is_read %}
+              <form action="{{ url_for('mark_notification_read', notification_id=notification.id) }}" method="post">
+                <input type="hidden" name="csrf_token" value="{{ admin_csrf_token }}" />
+                <button class="subtle-button" type="submit">Mark read</button>
+              </form>
+            {% else %}<span class="read-label">Read</span>{% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty-state"><span class="empty-icon">♧</span><h3>You’re all caught up</h3><p>Notifications about newly created orders will appear here.</p></div>
+    {% endif %}
+  </section>
+{% endblock %}

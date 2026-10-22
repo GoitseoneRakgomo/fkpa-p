@@ -1,0 +1,28 @@
+FK Physical LLC App - Completed Tasks
+
+About page mobile layout
+- Improved responsive spacing and layout across the About page sections.
+- Adjusted hero typography, quote banner, pillars cards, statistics grid, and split-image banner for smaller screens.
+- Improved mobile navigation dropdown positioning and footer wrapping for the About page.
+- Verified the touched stylesheet and About template had no editor diagnostics.
+
+Mobile navigation bar
+- Increased the mobile navigation bar height, enlarged the logo mark, and repositioned the dropdown below the taller bar and ticker.
+- Later reduced the navbar height by about 10% and adjusted the logo size and dropdown offset accordingly.
+- Verified the stylesheet had no editor diagnostics.
+
+FAQ page styling
+- Reworked the FAQ accordion markup to use the same classes and component structure as the FAQ section on the homepage.
+- Removed page-specific inline accordion styles and aligned the FAQ page heading, question, and answer styles with the homepage.
+- Verified FAQ and homepage routes returned HTTP 200 and no editor diagnostics were reported.
+
+Homepage service section
+- Replaced unrelated skyline service content with six cards matching the service descriptions above it: Physical Gold, Physical Silver, Secure Storage, Personal Support, Clear Process, and Focused Expertise.
+- Updated the section heading to match the service section above and used a balanced three-column desktop grid.
+- Improved scroll reveal staggering and hover/focus transitions; added reduced-motion handling.
+- Changed the heading to the site's black-and-gold style and improved text contrast with light card backgrounds.
+- Removed the "OUR SERVICES" eyebrow and bottom arrow indicators from each card.
+- Changed the section background to solid white.
+- Verified all six cards rendered, old unrelated copy was absent, and the homepage returned HTTP 200.
+- Checked computed heading/card colors and transitions in the browser; no editor diagnostics were reported.
+

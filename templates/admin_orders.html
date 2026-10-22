@@ -1,0 +1,61 @@
+{% extends "admin/base.html" %}
+{% block title %}Orders{% endblock %}
+{% block breadcrumb %}Orders{% endblock %}
+{% block content %}
+  <div class="page-heading">
+    <div><h1>Orders</h1><p>Create and track physical metals orders.</p></div>
+  </div>
+
+  <section class="admin-panel order-form-panel" id="new-order">
+    <div class="panel-heading"><div><h2>Create order</h2><p>Add an order to your records.</p></div></div>
+    <form class="order-form" action="{{ url_for('admin_orders') }}" method="post">
+      <input type="hidden" name="csrf_token" value="{{ admin_csrf_token }}" />
+      <label>Customer name<input name="customer_name" type="text" maxlength="160" required /></label>
+      <label>Email address<input name="email" type="email" maxlength="254" required /></label>
+      <label>Product
+        <select name="product" required>
+          <option value="" disabled selected>Select a product</option>
+          <option>Gold bars</option><option>Gold coins</option>
+          <option>Silver bars</option><option>Silver coins</option>
+        </select>
+      </label>
+      <label>Quantity<input name="quantity" type="number" min="0.01" step="0.01" required /></label>
+      <button class="admin-button" type="submit">Save order</button>
+    </form>
+  </section>
+
+  <section class="admin-panel">
+    <div class="panel-heading"><div><h2>All orders</h2><p>{{ orders|length }} recorded</p></div></div>
+    {% if orders %}
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Customer</th><th>Product</th><th>Quantity</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody>
+            {% for order in orders %}
+              <tr>
+                <td><strong>{{ order.customer_name }}</strong><small>{{ order.email }}</small></td>
+                <td>{{ order.product }}</td>
+                <td>{{ order.quantity|format_quantity }}</td>
+                <td>{{ order.created_at|replace('T', ' ') }} UTC</td>
+                <td>
+                  <form class="status-form" action="{{ url_for('admin_orders') }}" method="post">
+                    <input type="hidden" name="csrf_token" value="{{ admin_csrf_token }}" />
+                    <input type="hidden" name="action" value="update_status" />
+                    <input type="hidden" name="order_id" value="{{ order.id }}" />
+                    <select name="status" aria-label="Status for order {{ order.id }}" onchange="this.form.requestSubmit()">
+                      {% for status in ["Pending", "Processing", "Completed", "Cancelled"] %}
+                        <option value="{{ status }}" {% if order.status == status %}selected{% endif %}>{{ status }}</option>
+                      {% endfor %}
+                    </select>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <div class="empty-state"><span class="empty-icon">▤</span><h3>No orders recorded</h3><p>Use the form above to add an order.</p></div>
+    {% endif %}
+  </section>
+{% endblock %}

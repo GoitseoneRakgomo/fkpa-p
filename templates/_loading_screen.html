@@ -1,0 +1,68 @@
+<div class="page-loader" role="status" aria-live="polite" aria-label="Loading vault">
+  <div class="page-loader-content">
+    <div class="loader-artwork" aria-hidden="true">
+      <img class="loader-image" src="{{ url_for('static', filename='images/loader-orbit-reference.png') }}" alt="" />
+      <span class="loader-center-mask">
+        <img class="loader-logo" src="{{ url_for('static', filename='images/Logo_Fort_Kobbe_Shield_Transparent.png') }}" alt="" />
+        <span class="loader-spin-ring"></span>
+      </span>
+    </div>
+    <p class="loader-caption">Loading vault ..</p>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const loader = document.querySelector('.page-loader');
+    if (!loader) {
+      return;
+    }
+
+    const startedAt = Date.now();
+    let dismissed = false;
+
+    const dismissLoader = () => {
+      if (dismissed) {
+        return;
+      }
+      dismissed = true;
+
+      const minimumDisplayTime = 3000;
+      const delay = Math.max(0, minimumDisplayTime - (Date.now() - startedAt));
+      window.setTimeout(() => {
+        loader.classList.add('is-dismissed');
+        loader.setAttribute('aria-hidden', 'true');
+        window.setTimeout(() => loader.remove(), 500);
+      }, delay);
+    };
+
+    const waitForImages = async () => {
+      const images = Array.from(document.images);
+      images.forEach((image) => {
+        image.loading = 'eager';
+      });
+
+      await Promise.all(images.map((image) => {
+        if (image.complete) {
+          return Promise.resolve();
+        }
+
+        return new Promise((resolve) => {
+          image.addEventListener('load', resolve, { once: true });
+          image.addEventListener('error', resolve, { once: true });
+        });
+      }));
+
+      dismissLoader();
+    };
+
+    if (document.readyState === 'complete') {
+      waitForImages();
+    } else {
+      window.addEventListener('load', waitForImages, { once: true });
+    }
+
+    loader.classList.add('is-visible');
+    window.setTimeout(dismissLoader, 19500);
+  })();
+</script>

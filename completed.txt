@@ -1,0 +1,156 @@
+FK PHYSICAL APP — COMPLETED WORK AND PENDING ITEMS
+==================================================
+
+Review basis
+------------
+This list describes functionality and styling found in the current project files.
+There is no Git history available in this workspace and no tests directory was
+found, so this review cannot establish when a change was made or confirm a
+historical before/after. Items under "Pending" are gaps or recommended next
+steps visible from the current implementation, not a confirmed project backlog.
+
+
+COMPLETED / PRESENT IN THE APP
+==============================
+
+1. Front end and design
+-----------------------
+- Built public-facing pages for the home page, About, Gold & Silver, How It
+  Works, FAQs, Contact, and individual service details.
+- Added shared site navigation and footer, brand/logo treatment, contact links,
+  and calls to action that lead visitors toward an enquiry.
+- Added responsive navigation with a mobile menu toggle and responsive layout
+  rules across the active public stylesheet.
+- Established a visual system in static/style.css: white/light backgrounds,
+  dark text, gold accents, typography variables, buttons, spacing, and reusable
+  layout components.
+- Styled the public header as a fixed, translucent dark navigation bar, with
+  gold hover/focus treatment, branded buttons, image-led hero areas, and
+  section-specific layouts.
+- Added a gold/silver ticker in the shared site footer/header presentation. The
+  page script requests current values and refreshes the ticker periodically.
+- Added a Gold & Silver page with individual product information sections,
+  enquiry links, and a historical gold/silver performance API with a chart
+  script prepared for 1-month, 6-month, 1-year, and 5-year ranges. The current
+  Gold & Silver template does not include the chart markup or API URL attribute
+  expected by that script, so the historical chart is not currently displayed.
+- Added a multi-step purchase-process page with reveal-on-scroll effects that
+  respect the reduced-motion preference.
+- Added a contact form with labelled fields, topic choices, input validation
+  feedback, and prefilled enquiry topics from product links.
+- Added a distinct responsive administration UI: dark sidebar, mobile sidebar
+  toggle, dashboard metrics, tables, status indicators, forms, notifications,
+  and password settings.
+
+2. App architecture and functionality
+-------------------------------------
+- Implemented the application as a Flask app with server-rendered Jinja
+  templates and static CSS/JavaScript assets.
+- Added public routes for the home, About, Gold & Silver, service detail,
+  How It Works, FAQs, and Contact pages.
+- Added a SQLite admin database with admin users, orders, and notifications.
+  Database connections are managed with a context manager and commit/rollback
+  handling.
+- Added administrator sign-in/sign-out, session-based access protection,
+  password hashing, CSRF tokens for admin form posts, and password changes.
+- Added an admin dashboard with order, pending-order, and unread-notification
+  counts plus recent orders.
+- Added admin order creation, order status updates, and new-order
+  notifications. Supported statuses are Pending, Processing, Completed, and
+  Cancelled.
+- Added notification listing and mark-as-read functionality.
+- Added a live metals API endpoint and a historical metals performance endpoint
+  backed by Yahoo Finance futures references. Historical ranges are validated,
+  responses are cached for 15 minutes, and failures are logged/returned as an
+  error response.
+- Added server-side contact form validation and URL-encoded email subject/body
+  generation for an email-app handoff.
+
+3. API inventory and live metals prices
+---------------------------------------
+The app's JSON APIs and their upstream data source are:
+
+- `GET /api/metals` — app-owned live gold and silver ticker endpoint. The
+  browser requests it when the page loads and every 60 seconds thereafter.
+  The Flask server requests Yahoo Finance chart data for gold futures symbol
+  `GC=F` and silver futures symbol `SI=F` using a 1-day range and 1-minute
+  interval. It returns each metal's latest available market price, percentage
+  change from the previous close, and currency, plus a UTC `updated_at`
+  timestamp. The ticker formats and displays these values in the shared site
+  footer/header area. Browser caching is disabled for these requests.
+- Yahoo Finance upstream chart API —
+  `https://query1.finance.yahoo.com/v8/finance/chart/{symbol}`. This is the
+  external source used by both metals endpoints; it is called server-side, so
+  the browser only talks to this app's `/api/metals` endpoint. Prices are
+  futures-market reference values, not a quote or guaranteed transaction price
+  for physical bullion. The endpoint does not require an API key in the current
+  implementation.
+- `GET /api/metals/performance?range={1m|6m|1y|5y}` — app-owned historical
+  performance endpoint. It requests the same Yahoo Finance futures symbols with
+  a range/interval selected by the query: 1 month or 6 months at daily
+  intervals, and 1 year or 5 years at weekly intervals. It returns timestamped
+  gold and silver price arrays as JSON, rejects unsupported ranges with HTTP
+  400, reports upstream/data failures with HTTP 502, and sets a 15-minute
+  public cache header on successful responses. A frontend chart script is
+  included, but its required chart container and API URL are absent from the
+  current Gold & Silver template, so this endpoint is not currently used to
+  render a chart.
+
+No other third-party data, payment, CRM, or email API integration was found.
+Contact submissions are validated locally and handed off through a `mailto:`
+link rather than sent to an API. Google Fonts are loaded as external stylesheets,
+not consumed as app APIs.
+
+
+PENDING / RECOMMENDED NEXT WORK
+===============================
+
+1. Front end and design
+-----------------------
+- Remove the blanket 16px !important font-size rule at the bottom of
+  static/admin.css. It overrides the carefully sized admin labels, buttons,
+  tables, and navigation text, and is likely to make the admin UI look
+  oversized/inconsistent.
+- Consolidate public-site styling: templates load static/style.css, while a
+  separate root-level style.css also exists. Confirm which stylesheet is
+  authoritative and remove or clearly label the unused duplicate to avoid
+  future edits landing in the wrong file.
+- Resolve overlapping header styles between static/style.css and the inline
+  style in templates/_header.html. Keep a single source of truth for the
+  header's background, blur, and color behavior.
+- Review the privacy and terms footer links: both currently link to the Contact
+  page rather than dedicated policy content.
+- Improve ticker failure signaling: `/api/metals` currently substitutes
+  zero-valued prices on upstream failure, which can look like a real market
+  price. Verify ticker display and error messaging in the browser.
+- Run a cross-device and accessibility pass for contrast, keyboard navigation,
+  focus visibility, chart accessibility, and mobile layout.
+
+2. App architecture and operations
+----------------------------------
+- Replace the contact form's mailto handoff with a real, configured submission
+  path (email provider or CRM) if enquiries are meant to be delivered and
+  tracked by the app. At present, the app does not send or persist enquiries;
+  the visitor must open and send the prepared email.
+- Prepare admin authentication for deployment: do not rely on the default
+  username/password ("admin" / "admin 1"), require a unique configured
+  credential, and use a stable, securely configured Flask secret key. The app
+  currently has a random secret-key fallback and enables Flask debug mode when
+  run directly.
+- Add automated tests for public routes, contact validation, login/password
+  flows, CSRF enforcement, order status changes, notifications, and API error
+  cases. No project test directory was found during this review.
+- Improve price-data failure handling so the client can distinguish unavailable
+  or stale data from a genuine zero price. Document the external data source and
+  its availability/refresh expectations.
+- Connect the historical performance chart script to chart markup and the
+  `/api/metals/performance` URL, or remove the unused chart feature if it is no
+  longer required.
+- Decide and document how the SQLite database will be backed up, migrated, and
+  deployed. The schema is currently created at app startup rather than through
+  a versioned migration process.
+- Consolidate the duplicated live-ticker JavaScript in templates/index.html
+  and templates/_footer.html so the behavior has one maintained implementation.
+- If enquiries are expected to become operational orders, define and implement
+  how a submitted enquiry is reviewed and entered into the admin order
+  workflow; there is no public-to-admin intake flow at present.

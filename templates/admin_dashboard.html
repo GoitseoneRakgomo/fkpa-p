@@ -1,0 +1,41 @@
+{% extends "admin/base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block breadcrumb %}Dashboard{% endblock %}
+{% block content %}
+  <div class="page-heading">
+    <div><h1>Dashboard</h1><p>Overview of your order workspace.</p></div>
+    <a class="admin-button" href="{{ url_for('admin_orders') }}#new-order">＋ Create order</a>
+  </div>
+
+  {% if using_initial_password %}
+    <div class="security-notice" role="status">
+      <strong>Secure your admin account.</strong>
+      <span>You’re using the initial password. Change it in Settings before using this site with real data.</span>
+      <a href="{{ url_for('admin_settings') }}">Open settings →</a>
+    </div>
+  {% endif %}
+
+  <section class="metric-grid" aria-label="Order summary">
+    <article class="metric-card"><span class="metric-label">Total orders</span><strong>{{ order_count }}</strong><span class="metric-note">All recorded orders</span></article>
+    <article class="metric-card"><span class="metric-label">Pending</span><strong>{{ pending_count }}</strong><span class="metric-note">Awaiting next step</span></article>
+    <article class="metric-card"><span class="metric-label">Unread notifications</span><strong>{{ unread_count }}</strong><span class="metric-note">Updates to review</span></article>
+  </section>
+
+  <section class="admin-panel">
+    <div class="panel-heading"><div><h2>Recent orders</h2><p>Your latest recorded orders.</p></div><a class="text-link" href="{{ url_for('admin_orders') }}">View all →</a></div>
+    {% if recent_orders %}
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Customer</th><th>Product</th><th>Quantity</th><th>Status</th><th>Date</th></tr></thead>
+          <tbody>
+            {% for order in recent_orders %}
+              <tr><td><strong>{{ order.customer_name }}</strong><small>{{ order.email }}</small></td><td>{{ order.product }}</td><td>{{ order.quantity|format_quantity }}</td><td><span class="status-pill {{ order.status|lower }}">{{ order.status }}</span></td><td>{{ order.created_at|replace('T', ' ') }} UTC</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <div class="empty-state"><span class="empty-icon">▤</span><h3>No orders yet</h3><p>Create an order to start tracking it here.</p><a class="text-link" href="{{ url_for('admin_orders') }}#new-order">Create your first order →</a></div>
+    {% endif %}
+  </section>
+{% endblock %}

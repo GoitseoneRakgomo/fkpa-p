@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn about FK Physical LLC and its focused physical precious metals business." />
+  <title>About | FK Physical LLC</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo_Fort_Kobbe_Shield_Transparent.png') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body class="inner-page about-page">
+  {% include '_header.html' %}
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero page-hero-plain" style="background-image: url('{{ url_for('static', filename='images/gt3.jfif') }}');">
+      <div class="container">
+        <h1>Focused on<br>physical precious metals.</h1>
+        <p>FK Physical LLC is a United States company specialising in the sale of physical gold and silver to qualifying clients.</p>
+      </div>
+    </section>
+
+    <!-- Core Approach Section -->
+    <section class="section about-section" >
+      <div class="container about-grid">
+        <div>
+          <h2>Simple, clear,<br>personal.</h2>
+        </div>
+        <div class="about-copy">
+          <p>Our approach is intentionally straightforward. We believe clients purchasing physical precious metals should understand what they are buying, who they are buying it from and how their transaction works.</p>
+          <p>Our team provides personal support throughout the acquisition process, from the initial conversation through completion.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote Hero Banner -->
+    <section class="banner-base banner-quote-hero section-image" style="--section-image: url('{{ url_for('static', filename='images/Create_a_refined_editorial-style_vault_background_.png') }}');">
+      <div class="container quote-hero-inner">
+        <blockquote>
+          “Precious metal ownership should be simple, transparent, and grounded entirely in physical assets.”
+        </blockquote>
+        <cite>— FK Physical LLC Guidelines</cite>
+      </div>
+    </section>
+
+    <!-- Mission & Pillars Grid Section -->
+    <section class="section about-pillars-section " >
+      <div class="container">
+        <div class="section-heading centered">
+          <h2>Built on integrity,<br>clarity, and security.</h2>
+          <p>We structure every client relationship around core institutional standards to ensure a seamless acquisition process.</p>
+        </div>
+        <div class="process-page-grid">
+          <article>
+            <span>01</span>
+            <h2>Direct Physical Delivery</h2>
+            <p>Every ounce transacted represents actual physical metals, removing pooled risks or unallocated claims.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h2>US Compliance Standard</h2>
+            <p>Operations adhere to established United States regulatory onboarding and transaction procedures.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h2>Dedicated Support</h2>
+            <p>Clients work directly with experienced personnel throughout onboarding, pricing, and settlement.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Institutional Assurance Stat Grid Banner -->
+    <section class="banner-base banner-stats section-image" style="--section-image: url('{{ url_for('static', filename='images/gt2.jfif') }}');">
+      <div class="container banner-stats-content">
+        <div>
+          <h2>Built on physical security <br>and compliance.</h2>
+          <p>Every transaction is underpinned by rigorous identity verification and streamlined onboarding procedures operating through established United States entities.</p>
+        </div>
+        <div class="stat-grid-wrapper">
+          <div class="stat-card-item">
+            <strong>100%</strong>
+            <span>Physical Asset Allocation</span>
+          </div>
+          <div class="stat-card-item">
+            <strong>US</strong>
+            <span>Based Operations</span>
+          </div>
+          <div class="stat-card-item">
+            <strong>Au/Ag</strong>
+            <span>Focused Specialization</span>
+          </div>
+          <div class="stat-card-item">
+            <strong>1-on-1</strong>
+            <span>Direct Account Support</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Split Media Banner -->
+    <section class="banner-base banner-media-split section-image" style="--section-image: url('{{ url_for('static', filename='images/WhatsApp Image 2026-06-25 at 5.09.11 PM.jpg') }}');">
+      <div class="media-split-grid">
+        <div class="media-split-image-wrap">
+          <img src="{{ url_for('static', filename='images/WhatsApp Image 2026-06-25 at 5.09.11 PM.jpg') }}" alt="Refined physical gold bars" />
+        </div>
+        <div class="media-split-text">
+          <h2>Uncompromising focus on physical asset delivery.</h2>
+          <p>We eliminate derivative complications, synthetic paper contracts, and pooled claims. You receive direct access to physical gold and silver, purchased cleanly through clear US administrative processes.</p>
+          <div class="banner-media-action">
+            <a href="{{ url_for('contact') }}" class="btn btn-primary">Enquire for Details <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+  {% include '_footer.html' %}
+  <script>
+    const aboutPage = document.querySelector('.about-page');
+    const aboutSections = document.querySelectorAll('.about-page main > section:not(.page-hero)');
+
+    if (aboutPage && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      aboutPage.classList.add('about-motion-ready');
+
+      const revealItems = [];
+      aboutSections.forEach((section) => {
+        const content = section.querySelector('.container, .media-split-grid');
+        if (content) {
+          content.classList.add('about-reveal');
+          revealItems.push(content);
+        }
+
+        section.querySelectorAll('.process-page-grid article, .stat-card-item, .about-list-grid > div').forEach((item) => {
+          item.classList.add('about-reveal');
+          revealItems.push(item);
+        });
+      });
+
+      const aboutObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14, rootMargin: '0px 0px -36px 0px' });
+
+      revealItems.forEach((item) => aboutObserver.observe(item));
+    }
+  </script>
+</body>
+</html>

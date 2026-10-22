@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Frequently asked questions about purchasing physical gold and silver from FK Physical LLC." />
+  <title>FAQs | FK Physical LLC</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo_Fort_Kobbe_Shield_Transparent.png') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body class="inner-page faq-page">
+  {% include '_header.html' %}
+  <main>
+   <!-- New Visual Hero Section -->
+    <section class="page-hero page-hero-plain" style="background-image: url('{{ url_for('static', filename='images/h77.jfif') }}');">
+      <div class="container">
+        <h1>Clear answers before<br>you enquire.</h1>
+        <p>Find answers to common questions about purchasing physical gold and silver, storage, and our onboarding process.</p>
+      </div>
+    </section>
+    <section class="faq-section section" id="faqs">
+      <div class="container">
+        <div class="section-heading centered">
+          <h2>Clear answers before you enquire.</h2>
+        </div>
+        <div class="faq-accordion-container">
+        <details class="faq-item">
+          <summary class="faq-question">
+            <h3>What does FK Physical sell?</h3>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>We sell physical gold and silver to qualifying clients through our United States operations.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <h3>Do you provide storage?</h3>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>No. We do not operate a storage facility. If required, our team can introduce you to a separate storage provider.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <h3>Do you sell investment products?</h3>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>No. We do not provide investment management services or sell securities or paper precious metals products.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <h3>Who can purchase?</h3>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>All clients are required to complete our onboarding and compliance process before transacting.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <h3>How are transactions completed?</h3>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Transactions are completed through FK Physical LLC's United States operations. Clients must be willing and able to remit payment in accordance with our US payment instructions.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <h3>Can you help with storage in Panama?</h3>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>For clients interested in secure storage in Panama, we may be able to introduce you to Fort Kobbe Management Corp., a separate Panama-based company.</p>
+          </div>
+        </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Split Media Banner -->
+    <section class="banner-base banner-media-split section-image" >
+      <div class="media-split-grid">
+        <div class="media-split-image-wrap">
+          <img src="{{ url_for('static', filename='images/WhatsApp Image 2026-06-25 at 5.09.11 PM.jpg') }}" alt="Refined physical gold bars" />
+        </div>
+        <div class="media-split-text">
+          <h2>Uncompromising focus on physical asset delivery.</h2>
+          <p>We eliminate derivative complications, synthetic paper contracts, and pooled claims. You receive direct access to physical gold and silver, purchased cleanly through clear US administrative processes.</p>
+          <div class="banner-media-action">
+            <a href="{{ url_for('contact') }}" class="btn btn-primary">Enquire for Details <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+  {% include '_footer.html' %}
+
+</body>
+</html>
