@@ -1,0 +1,69 @@
+/* ==========================================================================
+   FK Physical – persistent 3D background layer
+   Load AFTER style.css. The canvas overlays existing section backgrounds,
+   while page content stays above it.
+   ========================================================================== */
+
+/* 1 ─ the canvas ---------------------------------------------------------- */
+#fk-scene {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;            /* stable on mobile: ignores the collapsing URL bar */
+  z-index: 1;
+  display: block;
+  pointer-events: none;      /* never blocks clicks, taps or text selection */
+  opacity: 0;
+  transition: none;
+}
+#fk-scene.is-ready { opacity: 1; }
+
+/* 2 ─ section palette guides particle lighting across the scroll timeline -- */
+.hero                        { --fk-scene-bg: #000000; }
+.home-about-section,
+.services-skyline-section,
+.home-why-section,
+.value-section,
+.products-catalog-section,
+.storage-section,
+.banner-timeline,
+.faq-section                 { --fk-scene-bg: #ffffff; }
+.who-we-work-with-section    { --fk-scene-bg: var(--ww-ivory, #f6f1e7); }
+
+.home-about-dark-banner,
+.banner-stats,
+.editorial-banner-section,
+.enquiry-banner,
+.luxury-split-banner,
+.process-section,
+.banner-cta-gold { --fk-scene-bg: #0c0b0a; }
+
+/* Keep section backgrounds unchanged and render the scene above them. */
+html.fk-scene-on .hero > *,
+html.fk-scene-on .home-about-section > *,
+html.fk-scene-on .home-about-dark-banner > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Let the scene canvas sit above the hero background, but below its content. */
+html.fk-scene-on body.home-page main,
+html.fk-scene-on body.home-page main > .hero {
+  z-index: auto;
+}
+
+/* The old 2D particles are replaced only where the 3D scene is active. */
+html.fk-scene-on .hero .gold-particle-canvas,
+html.fk-scene-on .home-about-section .gold-particle-canvas,
+html.fk-scene-on .home-about-dark-banner .gold-particle-canvas {
+  display: none !important;
+}
+
+/* 4 ─ no WebGL / failure: original look, nothing hidden ------------------- */
+html.fk-scene-off #fk-scene { display: none !important; }
+
+/* 5 ─ reduced motion: no fade, no motion – JS renders a still pose --------- */
+@media (prefers-reduced-motion: reduce) {
+  #fk-scene { transition: none; }
+}
