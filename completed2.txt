@@ -1,0 +1,45 @@
+FK Physical LLC — Completed Tasks
+Date: November 2, 2026
+================================
+
+WhatsApp contact button
+-----------------------
+- Added a fixed WhatsApp chat button at the bottom-right of the site using the
+  phone number already listed on the Contact page.
+- Added an accessible label, new-tab behavior, keyboard focus styling, and
+  mobile safe-area spacing.
+- Updated the button to use a transparent background with a green WhatsApp icon.
+
+Homepage scroll-driven 3D scene
+-------------------------------
+- Connected the existing Three.js and GSAP ScrollTrigger scene modules to the
+  Flask/Jinja homepage using the locally hosted vendor libraries.
+- Added one persistent, pointer-transparent canvas and a browser import map for
+  the local Three.js module. No frontend packages or CDN dependencies were
+  introduced.
+- Used four existing `/static/anim/` images as scroll-linked scene textures,
+  with texture sizing adjusted for desktop and mobile.
+- Preserved page section backgrounds by making the Three.js renderer
+  transparent and layering the scene separately from foreground content.
+- Limited the 3D scene to the Hero and About sections, including the About
+  banner. The scene fades out as Services begins; the later sections retain
+  their existing backgrounds and styling.
+- Kept the reduced-motion and WebGL fallback behavior.
+
+Coin animation and Hero background
+----------------------------------
+- Replaced the rotating ring geometry with a small field of 3D gold coins
+  textured from `/static/anim/coin1.jfif`.
+- Prepared both faces from the reference image and removed its light backdrop
+  so the coin artwork sits naturally in the 3D scene.
+- Enlarged the coins and shifted their Hero/About scroll poses to the right,
+  retaining the mobile size adjustment.
+- Removed the Hero photo and gradients, leaving a solid space-black background
+  (`#030303`) behind the animation.
+
+Verification
+------------
+- Verified the homepage template, local Three.js/GSAP/ScrollTrigger files,
+  scene modules, and animation and coin image URLs through Flask's test client.
+- Confirmed the Hero/About-only scroll keyframes, fade-out before Services,
+  solid Hero background, and removal of the prior ring configuration.

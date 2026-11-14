@@ -1,0 +1,24 @@
+{% extends "policy_page.html" %}
+{% set policy_title = "Disclaimers" %}
+{% set policy_heading = "Important" %}
+{% set policy_highlight = "information." %}
+{% set policy_description = "Important information about the Website, its content and the use of information published by FKPA Global FZCO." %}
+{% set policy_reviewed = "" %}
+
+{% block policy_content %}
+<section>
+  <h3>Website and content</h3>
+  <p>The Website, its content, and any information made available through it are provided on an "as is" and "as available" basis. To the fullest extent permitted by applicable law, the Company makes no representation, warranty or undertaking, whether express, implied or statutory, regarding the availability, accessibility, uninterrupted operation, security, reliability, accuracy, completeness, timeliness, merchantability, fitness for a particular purpose, non-infringement, or suitability of the Website, its content, or any information made available through it.</p>
+  <p>The Company does not warrant that the Website will operate without interruption, delay or error, that any defects will be corrected, or that the Website, its servers or any electronic communications sent by or on behalf of the Company will be free from viruses, malware or other harmful components. You are solely responsible for implementing appropriate safeguards, including antivirus protection, data backups and other security measures.</p>
+</section>
+<section>
+  <h3>No professional or investment advice</h3>
+  <p>The Website is provided for general informational purposes only. Nothing contained on the Website constitutes, or should be construed as constituting, investment, financial, legal, tax, accounting or other professional advice, nor does it constitute a recommendation, solicitation, endorsement or offer to buy, sell or hold any precious metals, financial products or other assets. Any market information, commentary, pricing, charts, performance data or other materials published on the Website are provided for informational purposes only, may change without notice, and should not be relied upon as the basis for any investment or commercial decision.</p>
+  <p>You acknowledge and agree that you are solely responsible for evaluating the accuracy, completeness and suitability of any information obtained through the Website and for obtaining independent professional advice before making any financial, legal, tax or commercial decision or entering into any transaction.</p>
+</section>
+<section>
+  <h3>Exclusion of warranties</h3>
+  <p>Except as expressly provided in these Terms or the Company's applicable agreements and policies, and to the fullest extent permitted by applicable law, the Company disclaims all representations, warranties, conditions and guarantees, whether express, implied or statutory, relating to the Website, its content, and any Services made available through or in connection with the Website.</p>
+  <p>For more information, please also review our <a href="{{ url_for('terms_of_use') }}">Website Terms of Use</a>.</p>
+</section>
+{% endblock %}

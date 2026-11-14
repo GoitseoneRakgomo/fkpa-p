@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="{{ policy_description }}" />
+  <title>{{ policy_title }} | FKPA Global FZCO</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo_Fort_Kobbe_Shield_Transparent.png') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body class="inner-page policy-page">
+  {% include '_header.html' %}
+  <main>
+    <section class="page-hero page-hero-plain policy-hero" style="background-image: url('{{ url_for('static', filename='images/Create_a_refined_editorial-style_vault_background_.png') }}');">
+      <div class="container">
+        <span class="policy-eyebrow">FKPA GLOBAL FZCO</span>
+        <h1>{{ policy_heading }}<br><span>{{ policy_highlight }}</span></h1>
+        <p>{{ policy_description }}</p>
+      </div>
+    </section>
+
+    <section class="policy-document-section">
+      <article class="container policy-document">
+        <div class="policy-document-heading">
+          <span class="policy-document-kicker">LEGAL &amp; COMPLIANCE</span>
+          <h2>{{ policy_title }}</h2>
+          {% if policy_reviewed %}
+          <p>Last reviewed: {{ policy_reviewed }}</p>
+          {% endif %}
+        </div>
+        <div class="policy-content">
+          {% block policy_content %}{% endblock %}
+        </div>
+      </article>
+    </section>
+  </main>
+  {% include '_footer.html' %}
+</body>
+</html>

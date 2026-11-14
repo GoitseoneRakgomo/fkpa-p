@@ -14,10 +14,13 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY") or secrets.token_hex(32)
-app.config["ADMIN_DATABASE_PATH"] = os.environ.get(
-    "FK_ADMIN_DATABASE_PATH",
-    os.path.join(app.instance_path, "admin.sqlite3"),
-)
+if os.environ.get("FK_ADMIN_DATABASE_PATH"):
+    admin_db_path = os.environ["FK_ADMIN_DATABASE_PATH"]
+elif os.environ.get("VERCEL") == "1":
+    admin_db_path = "/tmp/fk_admin.sqlite3"
+else:
+    admin_db_path = os.path.join(app.instance_path, "admin.sqlite3")
+app.config["ADMIN_DATABASE_PATH"] = admin_db_path
 app.config["ADMIN_USERNAME"] = os.environ.get("ADMIN_USERNAME", "admin")
 app.config["ADMIN_INITIAL_PASSWORD"] = os.environ.get("ADMIN_PASSWORD", "admin 1")
 
@@ -576,6 +579,26 @@ def faqs():
     return render_template("faqs.html")
 
 
+@app.route("/terms-of-use")
+def terms_of_use():
+    return render_template("policies/terms_of_use.html")
+
+
+@app.route("/privacy-policy")
+def privacy_policy():
+    return render_template("policies/privacy_policy.html")
+
+
+@app.route("/cookie-policy")
+def cookie_policy():
+    return render_template("policies/cookie_policy.html")
+
+
+@app.route("/disclaimers")
+def disclaimers():
+    return render_template("policies/disclaimers.html")
+
+
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     topics = {"gold", "silver", "both", "storage", "general"}
@@ -643,4 +666,4 @@ def contact():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
