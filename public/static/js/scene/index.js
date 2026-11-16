@@ -1,0 +1,141 @@
+import { getQuality } from './quality.js';
+import { createStage } from './stage.js';
+import { createWorld } from './objects.js';
+import { createDirector } from './timeline.js';
+import { hasWebGL, enableFallback } from './fallback.js';
+
+const { gsap, ScrollTrigger } = window;
+const mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+let dispose = null;
+
+function start() {
+  const canvas = document.getElementById('fk-scene');
+  const root = document.documentElement;
+  if (!canvas || !gsap || !ScrollTrigger || !hasWebGL()) { enableFallback(); return; }
+
+  const reduced = mqReduce.matches;
+  const q = getQuality();
+  gsap.registerPlugin(ScrollTrigger);
+
+  let stage, world, director;
+  try {
+    stage = createStage(canvas, q);
+    world = createWorld(
+      stage,
+      q,
+      JSON.parse(canvas.dataset.animTextures || '[]'),
+      canvas.dataset.coinTexture,
+      canvas.dataset.coin2Texture
+    );
+    director = createDirector({ gsap, ScrollTrigger, q, reduced });
+    director.build();
+    if (!director.ready) throw new Error('no keyframe sections found');
+  } catch (err) {
+    console.error('[FK scene] init failed, using fallback', err);
+    try { world && world.dispose(); stage && stage.dispose(); director && director.destroy(); } catch (e) {}
+    enableFallback();
+    return;
+  }
+
+  const ptr = { x: 0, y: 0, tx: 0, ty: 0 };
+  let frames = 0, acc = 0, shown = false, dead = false;
+
+  function show() {
+    if (shown) return;
+    shown = true;
+    root.classList.add('fk-scene-on');
+    requestAnimationFrame(() => canvas.classList.add('is-ready'));
+  }
+
+  function renderStatic() {
+    director.evaluate();
+    world.apply(director.cur, 0, { x: 0, y: 0 });
+    stage.render();
+    show();
+  }
+
+  /* ── animated mode: one ticker, scroll-scrubbed timeline ── */
+  function tick(time, deltaMs) {
+    if (dead) return;
+    director.evaluate();
+    if (director.covered()) return;                // opaque banner hides canvas → skip GPU work
+    ptr.x += (ptr.tx - ptr.x) * 0.05;
+    ptr.y += (ptr.ty - ptr.y) * 0.05;
+    world.apply(director.cur, time, ptr);
+    show();
+    if (director.cur.sceneOp <= 0.001) return;
+    stage.render();
+
+    // adaptive resolution: step the pixel ratio down if frames run long
+    if (++frames > 40) {
+      acc += Math.min(deltaMs, 200);
+      if (frames % 120 === 0) {
+        const avg = acc / 80; acc = 0;
+        if (avg > 24 && stage.dpr > 1) {
+          const v = Math.max(1, stage.dpr - 0.25);
+          stage.setDpr(v); world.setPixelRatio(v);
+        }
+      }
+    }
+  }
+
+  /* ── listeners ── */
+  let rzT = 0, ro;
+  const relayout = () => {
+    clearTimeout(rzT);
+    rzT = setTimeout(() => {
+      if (dead) return;
+      stage.resize();
+      world.resize();
+      director.refresh();
+      if (reduced) renderStatic();
+    }, 250);
+  };
+  const onPointer = (e) => {
+    if (e.pointerType !== 'mouse') return;
+    ptr.tx = (e.clientX / window.innerWidth - 0.5) * 2;
+    ptr.ty = -(e.clientY / window.innerHeight - 0.5) * 2;
+  };
+  let scrollRaf = 0;
+  const onScrollReduced = () => {
+    if (scrollRaf) return;
+    scrollRaf = requestAnimationFrame(() => { scrollRaf = 0; if (director.updatePose()) renderStatic(); });
+  };
+  const onLost = (e) => { e.preventDefault(); teardown(); enableFallback(); };
+
+  window.addEventListener('resize', relayout);
+  window.addEventListener('load', relayout);
+  canvas.addEventListener('webglcontextlost', onLost);
+  if ('ResizeObserver' in window) { ro = new ResizeObserver(relayout); ro.observe(document.body); }
+
+  if (reduced) {
+    window.addEventListener('scroll', onScrollReduced, { passive: true });
+    renderStatic();
+  } else {
+    if (q.pointer) window.addEventListener('pointermove', onPointer, { passive: true });
+    gsap.ticker.add(tick);
+  }
+
+  function teardown() {
+    dead = true;
+    clearTimeout(rzT);
+    window.removeEventListener('resize', relayout);
+    window.removeEventListener('load', relayout);
+    window.removeEventListener('scroll', onScrollReduced);
+    window.removeEventListener('pointermove', onPointer);
+    canvas.removeEventListener('webglcontextlost', onLost);
+    ro && ro.disconnect();
+    gsap.ticker.remove(tick);
+    director.destroy(); world.dispose(); stage.dispose();
+    canvas.classList.remove('is-ready');
+    root.classList.remove('fk-scene-on');
+  }
+  dispose = teardown;
+}
+
+// Live-switch when the OS "reduce motion" preference changes.
+const onMq = () => { if (dispose) { dispose(); dispose = null; } start(); };
+mqReduce.addEventListener ? mqReduce.addEventListener('change', onMq) : mqReduce.addListener(onMq);
+
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+else start();
