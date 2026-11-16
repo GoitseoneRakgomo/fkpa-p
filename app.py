@@ -12,7 +12,7 @@ from urllib import request as urllib_request
 from flask import Flask, abort, flash, jsonify, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="public/static", static_url_path="/static")
 app.secret_key = os.environ.get("FLASK_SECRET_KEY") or secrets.token_hex(32)
 if os.environ.get("FK_ADMIN_DATABASE_PATH"):
     admin_db_path = os.environ["FK_ADMIN_DATABASE_PATH"]
